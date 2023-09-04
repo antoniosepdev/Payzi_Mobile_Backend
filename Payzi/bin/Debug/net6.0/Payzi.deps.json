@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Payzi/1.0.0": {
+        "dependencies": {
+          "Payzi.Abstraction": "1.0.0"
+        },
+        "runtime": {
+          "Payzi.dll": {}
+        }
+      },
+      "Payzi.Abstraction/1.0.0": {
+        "runtime": {
+          "Payzi.Abstraction.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Payzi/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Payzi.Abstraction/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

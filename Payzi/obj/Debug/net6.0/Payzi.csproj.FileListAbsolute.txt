@@ -1,0 +1,15 @@
+C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi\bin\Debug\net6.0\Payzi.deps.json
+C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi\bin\Debug\net6.0\Payzi.dll
+C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi\bin\Debug\net6.0\Payzi.pdb
+C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi\bin\Debug\net6.0\Payzi.Abstraction.dll
+C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi\bin\Debug\net6.0\Payzi.Abstraction.pdb
+C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi\obj\Debug\net6.0\Payzi.csproj.AssemblyReference.cache
+C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi\obj\Debug\net6.0\Payzi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi\obj\Debug\net6.0\Payzi.AssemblyInfoInputs.cache
+C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi\obj\Debug\net6.0\Payzi.AssemblyInfo.cs
+C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi\obj\Debug\net6.0\Payzi.csproj.CoreCompileInputs.cache
+C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi\obj\Debug\net6.0\Payzi.csproj.CopyComplete
+C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi\obj\Debug\net6.0\Payzi.dll
+C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi\obj\Debug\net6.0\refint\Payzi.dll
+C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi\obj\Debug\net6.0\Payzi.pdb
+C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi\obj\Debug\net6.0\ref\Payzi.dll

@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Payzi.Mobile.Api", "Payzi.Mobile.Api.csproj", "{04C5ADBC-C454-4947-AADE-800FF95C6EC1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0. Libraries", "0. Libraries", "{3E827EA0-0E25-463B-8FCD-A30A26CD00CD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Models", "1. Models", "{3D94DF59-1183-48F7-9B01-BEAEA3C237BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Services", "2. Services", "{28CACFD9-129F-433E-9828-45E03D0476D2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Payzi.Abstraction", "..\Payzi.Abstraction\Payzi.Abstraction.csproj", "{D1AB9908-055B-4DD3-9689-315EA2E39982}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payzi", "..\Payzi\Payzi.csproj", "{F1306C64-93A1-4910-9009-CDDA05B0AB01}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04C5ADBC-C454-4947-AADE-800FF95C6EC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04C5ADBC-C454-4947-AADE-800FF95C6EC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04C5ADBC-C454-4947-AADE-800FF95C6EC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04C5ADBC-C454-4947-AADE-800FF95C6EC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1AB9908-055B-4DD3-9689-315EA2E39982}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1AB9908-055B-4DD3-9689-315EA2E39982}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1AB9908-055B-4DD3-9689-315EA2E39982}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1AB9908-055B-4DD3-9689-315EA2E39982}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1306C64-93A1-4910-9009-CDDA05B0AB01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1306C64-93A1-4910-9009-CDDA05B0AB01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1306C64-93A1-4910-9009-CDDA05B0AB01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1306C64-93A1-4910-9009-CDDA05B0AB01}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{04C5ADBC-C454-4947-AADE-800FF95C6EC1} = {28CACFD9-129F-433E-9828-45E03D0476D2}
+		{D1AB9908-055B-4DD3-9689-315EA2E39982} = {3E827EA0-0E25-463B-8FCD-A30A26CD00CD}
+		{F1306C64-93A1-4910-9009-CDDA05B0AB01} = {3D94DF59-1183-48F7-9B01-BEAEA3C237BF}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {04A34B62-3F20-484F-A344-E1326D61C648}
+	EndGlobalSection
+EndGlobal
