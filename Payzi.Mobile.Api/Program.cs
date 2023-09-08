@@ -1,11 +1,18 @@
 using Payzi.Mobile.Api.Startup.FluentValidation;
 using Payzi.Mobile.Api.Startup.IEndpoint;
 using Payzi.Mobile.Api.Startup.Swagger;
+using Payzi.MySQL.Data;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+string? connectionStrings = builder.Configuration.GetConnectionString("Payzi2");
+
+MySQLConfiguration mySQLConnectionConfig = new MySQLConfiguration(builder.Configuration.GetConnectionString("Payzi2"));
+
+builder.Services.AddSingleton(mySQLConnectionConfig);
+
 builder.Services.RegisterServices(builder.Configuration);
 
 builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
