@@ -13,7 +13,7 @@ namespace Payzi.Mobile.Api.Endpoints.Tests
         {
             endpoints.MapPost("/Usuario/Add", [AllowAnonymous] async (HttpContext httpContext, MySQLConfiguration connectionString, [FromBody] UsuarioDTO usuarioDTO) =>
             {
-                Usuario usuarioController = new Usuario(httpContext, connectionString);
+                UsuarioController usuarioController = new UsuarioController(httpContext, connectionString);
 
                 return await usuarioController.AddUser(usuarioDTO);
 

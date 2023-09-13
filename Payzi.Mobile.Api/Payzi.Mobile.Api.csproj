@@ -27,4 +27,11 @@
     <ProjectReference Include="..\Payzi\Payzi.MySQL.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\Boletas\" />
+    <Folder Include="Controllers\Teclado\" />
+    <Folder Include="Controllers\Vouchers\" />
+    <Folder Include="Controllers\Pagos\" />
+  </ItemGroup>
+
 </Project>

@@ -3,17 +3,17 @@ using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Common;
 using Payzi.Mobile.Api.Controllers.Common;
 using Payzi.Mobile.Api.DTO.Usuarios;
-using Payzi.Mobile.Api.Interfaces;
 using Payzi.Mobile.Api.Models.Usuarios;
+using Payzi.Mobile.Api.Services.Usuarios;
 using Payzi.MySQL.Data;
 
 namespace Payzi.Mobile.Api.Controllers.Usuarios
 {
-    public class Usuario : BaseController, IUsuario
+    public class UsuarioController : BaseController, IUsuario
     {
         private MySQLConfiguration _connectionString;
 
-        public Usuario(HttpContext httpContext, MySQLConfiguration connectionString)
+        public UsuarioController(HttpContext httpContext, MySQLConfiguration connectionString)
             : base(httpContext, connectionString)
         {
             _connectionString = connectionString;
@@ -24,7 +24,7 @@ namespace Payzi.Mobile.Api.Controllers.Usuarios
             return new MySqlConnection(_connectionString.ConnectionString);
         }
 
-        public async Task<IEnumerable<Usuario>> GetAllUsers()
+        public async Task<IEnumerable<UsuarioController>> GetAllUsers()
         {
             throw new NotImplementedException();
         }

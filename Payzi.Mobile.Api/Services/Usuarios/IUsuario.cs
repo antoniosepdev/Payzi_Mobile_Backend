@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Payzi.Mobile.Api.Interfaces
+namespace Payzi.Mobile.Api.Services.Usuarios
 {
     public interface IUsuario
     {
