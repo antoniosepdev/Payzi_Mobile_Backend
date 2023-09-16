@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Payzi.MySQL.Model.Model;
+namespace Payzi.MySQL.Model;
 
 /// <summary>
 /// Tipo de cuenta que podrá elegir el cliente a pagar? tabla en espera de respuesta.

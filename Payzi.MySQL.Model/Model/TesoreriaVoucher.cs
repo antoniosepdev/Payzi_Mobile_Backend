@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Payzi.MySQL.Model.Model;
+namespace Payzi.MySQL.Model;
 
 /// <summary>
 /// Tabla de Voucher generado para el cliente después de una compra.
