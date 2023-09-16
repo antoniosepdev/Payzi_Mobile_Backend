@@ -7,9 +7,9 @@ using System.Text.Json.Serialization;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-string? connectionStrings = builder.Configuration.GetConnectionString("Payzi2");
+string? connectionStrings = builder.Configuration.GetConnectionString("Payzi");
 
-MySQLConfiguration mySQLConnectionConfig = new MySQLConfiguration(builder.Configuration.GetConnectionString("Payzi2"));
+MySQLConfiguration mySQLConnectionConfig = new MySQLConfiguration(builder.Configuration.GetConnectionString("Payzi"));
 
 builder.Services.AddSingleton(mySQLConnectionConfig);
 

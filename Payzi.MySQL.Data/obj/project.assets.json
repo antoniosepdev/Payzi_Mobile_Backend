@@ -497,29 +497,6 @@
         "build": {
           "buildTransitive/net6.0/System.Text.Json.targets": {}
         }
-      },
-      "Payzi.Abstraction/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/Payzi.Abstraction.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Payzi.Abstraction.dll": {}
-        }
-      },
-      "Payzi.MySQL.Model/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "Payzi.Abstraction": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/Payzi.MySQL.Model.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Payzi.MySQL.Model.dll": {}
-        }
       }
     }
   },
@@ -1221,16 +1198,6 @@
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
-    },
-    "Payzi.Abstraction/1.0.0": {
-      "type": "project",
-      "path": "../Payzi.Abstraction/Payzi.Abstraction.csproj",
-      "msbuildProject": "../Payzi.Abstraction/Payzi.Abstraction.csproj"
-    },
-    "Payzi.MySQL.Model/1.0.0": {
-      "type": "project",
-      "path": "../Payzi/Payzi.MySQL.Model.csproj",
-      "msbuildProject": "../Payzi/Payzi.MySQL.Model.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -1240,8 +1207,7 @@
       "Microsoft.EntityFrameworkCore >= 7.0.10",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.10",
       "Microsoft.Extensions.DependencyInjection >= 7.0.0",
-      "Microsoft.Extensions.DependencyInjection.Abstractions >= 7.0.0",
-      "Payzi.MySQL.Model >= 1.0.0"
+      "Microsoft.Extensions.DependencyInjection.Abstractions >= 7.0.0"
     ]
   },
   "packageFolders": {
@@ -1276,11 +1242,7 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {
-            "C:\\Users\\suffe\\Documents\\Github\\Repositorios Antonio Sepulveda\\Payzi\\Payzi_Mobile_Backend\\Payzi\\Payzi.MySQL.Model.csproj": {
-              "projectPath": "C:\\Users\\suffe\\Documents\\Github\\Repositorios Antonio Sepulveda\\Payzi\\Payzi_Mobile_Backend\\Payzi\\Payzi.MySQL.Model.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -1336,7 +1298,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -2,16 +2,11 @@ C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobil
 C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi.MySQL.Data\bin\Debug\net6.0\Payzi.MySQL.Data.runtimeconfig.json
 C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi.MySQL.Data\bin\Debug\net6.0\Payzi.MySQL.Data.dll
 C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi.MySQL.Data\bin\Debug\net6.0\Payzi.MySQL.Data.pdb
-C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi.MySQL.Data\bin\Debug\net6.0\Payzi.Abstraction.dll
-C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi.MySQL.Data\bin\Debug\net6.0\Payzi.MySQL.Model.dll
-C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi.MySQL.Data\bin\Debug\net6.0\Payzi.MySQL.Model.pdb
-C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi.MySQL.Data\bin\Debug\net6.0\Payzi.Abstraction.pdb
 C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi.MySQL.Data\obj\Debug\net6.0\Payzi.MySQL.Data.csproj.AssemblyReference.cache
 C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi.MySQL.Data\obj\Debug\net6.0\Payzi.MySQL.Data.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi.MySQL.Data\obj\Debug\net6.0\Payzi.MySQL.Data.AssemblyInfoInputs.cache
 C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi.MySQL.Data\obj\Debug\net6.0\Payzi.MySQL.Data.AssemblyInfo.cs
 C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi.MySQL.Data\obj\Debug\net6.0\Payzi.MySQL.Data.csproj.CoreCompileInputs.cache
-C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi.MySQL.Data\obj\Debug\net6.0\Payzi.MySQL.Data.csproj.CopyComplete
 C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi.MySQL.Data\obj\Debug\net6.0\Payzi.MySQL.Data.dll
 C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi.MySQL.Data\obj\Debug\net6.0\refint\Payzi.MySQL.Data.dll
 C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi.MySQL.Data\obj\Debug\net6.0\Payzi.MySQL.Data.pdb

@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Payzi\Payzi.MySQL.Model.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="NewFolder\" />
   </ItemGroup>
 
