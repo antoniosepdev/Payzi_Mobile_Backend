@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Payzi.MySQL.Model;
 
-public partial class DboPersona
+public partial class Persona
 {
     public Guid Id { get; set; }
 
@@ -45,7 +45,7 @@ public partial class DboPersona
 
     public int? ComunaCodigo { get; set; }
 
-    public virtual DboComuna? DboComuna { get; set; }
+    public virtual Comuna? Comuna { get; set; }
 
-    public virtual MembresiaUsuario? MembresiaUsuario { get; set; }
+    public virtual Usuario? Usuario { get; set; }
 }

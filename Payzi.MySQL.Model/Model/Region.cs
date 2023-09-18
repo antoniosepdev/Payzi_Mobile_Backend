@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Payzi.MySQL.Model;
 
-public partial class DboRegion
+public partial class Region
 {
     public int Codigo { get; set; }
 
@@ -13,7 +13,7 @@ public partial class DboRegion
 
     public string? NombreOficial { get; set; }
 
-    public virtual ICollection<DboCiudad> DboCiudads { get; set; } = new List<DboCiudad>();
+    public virtual ICollection<Ciudad> Ciudads { get; set; } = new List<Ciudad>();
 
-    public virtual DboPai PaisCodigoNavigation { get; set; } = null!;
+    public virtual Pai PaisCodigoNavigation { get; set; } = null!;
 }

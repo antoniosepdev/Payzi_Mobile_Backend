@@ -6,11 +6,11 @@ namespace Payzi.MySQL.Model;
 /// <summary>
 /// Tabla de formas de pago que realizará el cliente.
 /// </summary>
-public partial class TesoreriaFormapago
+public partial class Formapago
 {
-    public bool Codigo { get; set; }
+    public int Codigo { get; set; }
 
     public string Nombre { get; set; } = null!;
 
-    public virtual ICollection<TesoreriaTransaccion> TesoreriaTransaccions { get; set; } = new List<TesoreriaTransaccion>();
+    public virtual ICollection<Transaccion> Transaccions { get; set; } = new List<Transaccion>();
 }

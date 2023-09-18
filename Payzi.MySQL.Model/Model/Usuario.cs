@@ -6,7 +6,7 @@ namespace Payzi.MySQL.Model;
 /// <summary>
 /// Tabla usuarios registrados
 /// </summary>
-public partial class MembresiaUsuario
+public partial class Usuario
 {
     public Guid Id { get; set; }
 
@@ -18,9 +18,11 @@ public partial class MembresiaUsuario
 
     public bool Bloqueo { get; set; }
 
-    public int TipoUsuarioCodigo { get; set; }
+    public int RolCodigo { get; set; }
 
-    public virtual DboPersona IdNavigation { get; set; } = null!;
+    public virtual Persona IdNavigation { get; set; } = null!;
 
-    public virtual MembresiaTipousuario TipoUsuarioCodigoNavigation { get; set; } = null!;
+    public virtual Rol RolCodigoNavigation { get; set; } = null!;
+
+    public virtual ICollection<Voucher> Vouchers { get; set; } = new List<Voucher>();
 }

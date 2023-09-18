@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Payzi.MySQL.Model;
 
-public partial class DboComuna
+public partial class Comuna
 {
     public int Codigo { get; set; }
 
@@ -17,7 +17,7 @@ public partial class DboComuna
 
     public int? CodigoPostal { get; set; }
 
-    public virtual DboCiudad DboCiudad { get; set; } = null!;
+    public virtual Ciudad Ciudad { get; set; } = null!;
 
-    public virtual ICollection<DboPersona> DboPersonas { get; set; } = new List<DboPersona>();
+    public virtual ICollection<Persona> Personas { get; set; } = new List<Persona>();
 }

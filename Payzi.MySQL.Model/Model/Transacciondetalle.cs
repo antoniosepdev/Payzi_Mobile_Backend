@@ -3,7 +3,10 @@ using System.Collections.Generic;
 
 namespace Payzi.MySQL.Model;
 
-public partial class TesoreriaTransacciondetalle
+/// <summary>
+/// Detalles de la transacción.
+/// </summary>
+public partial class Transacciondetalle
 {
     public Guid Id { get; set; }
 
@@ -21,7 +24,9 @@ public partial class TesoreriaTransacciondetalle
 
     public bool? Print { get; set; }
 
-    public virtual TesoreriaCustomfield? CustomFields { get; set; }
+    public virtual Customfield? CustomFields { get; set; }
 
-    public virtual ICollection<TesoreriaTransaccion> TesoreriaTransaccions { get; set; } = new List<TesoreriaTransaccion>();
+    public virtual ICollection<Transaccion> Transaccions { get; set; } = new List<Transaccion>();
+
+    public virtual ICollection<Transaccionsalidum> Transaccionsalida { get; set; } = new List<Transaccionsalidum>();
 }
