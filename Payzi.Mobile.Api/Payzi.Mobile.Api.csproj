@@ -29,10 +29,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Boletas\" />
-    <Folder Include="Controllers\Teclado\" />
-    <Folder Include="Controllers\Vouchers\" />
-    <Folder Include="Controllers\Pagos\" />
+    <Folder Include="Controllers\BoletasControllers\" />
+    <Folder Include="Controllers\TecladoControllers\" />
+    <Folder Include="Controllers\VouchersControllers\" />
+    <Folder Include="Controllers\PagosControllers\" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-﻿using Payzi.Mobile.Api.DTO.Usuarios;
+﻿using Payzi.Mobile.Api.DTO.UsuariosDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;

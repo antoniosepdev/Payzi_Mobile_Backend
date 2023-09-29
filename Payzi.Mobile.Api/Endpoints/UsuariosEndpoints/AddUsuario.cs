@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Payzi.Mobile.Api.Controllers.Usuarios;
-using Payzi.Mobile.Api.DTO.Tests;
-using Payzi.Mobile.Api.DTO.Usuarios;
+using Payzi.Mobile.Api.Controllers.UsuariosControllers;
+using Payzi.Mobile.Api.DTO.UsuariosDTO;
 using Payzi.MySQL.Data;
 
-namespace Payzi.Mobile.Api.Endpoints.Tests
+namespace Payzi.Mobile.Api.Endpoints.UsuariosEndpoints
 {
     public class AddUsuario : IEndpoint
     {

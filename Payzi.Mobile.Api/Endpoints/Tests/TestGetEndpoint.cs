@@ -6,17 +6,15 @@ using Payzi.MySQL.Data;
 
 namespace Payzi.Mobile.Api.Endpoints.Tests
 {
-    public class TestEndpoint : IEndpoint
+    public class TestGetEndpoint : IEndpoint
     {
         public IEndpointRouteBuilder AddRoutes(IEndpointRouteBuilder endpoints)
         {
-            endpoints.MapPost("/api/Test/Post", [AllowAnonymous] async (HttpContext httpContext, MySQLConfiguration connectionString, [FromBody] TestDTO testDTO) =>
+            endpoints.MapGet("/api/Test/Get", [AllowAnonymous] async (HttpContext httpContext, MySQLConfiguration connectionString, [FromBody] TestDTO testDTO) =>
             {
                 TestController testController = new TestController(httpContext, connectionString);
 
                 return await testController.Test(testDTO);
-
-
 
             }).Produces<TestDTO>(StatusCodes.Status200OK);
 

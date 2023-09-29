@@ -27,6 +27,8 @@ public partial class Context : DbContext
 
     public virtual DbSet<Menuitem> Menuitems { get; set; }
 
+    public virtual DbSet<Negocio> Negocios { get; set; }
+
     public virtual DbSet<Pai> Pais { get; set; }
 
     public virtual DbSet<Persona> Personas { get; set; }
@@ -89,7 +91,7 @@ public partial class Context : DbContext
 
             entity.HasIndex(e => new { e.CiudadCodigo, e.RegionCodigo, e.PaisCodigo }, "RegionCodigo_idx");
 
-            entity.Property(e => e.Nombre).HasMaxLength(45);
+            entity.Property(e => e.NombreComuna).HasMaxLength(45);
 
             entity.HasOne(d => d.Ciudad).WithMany(p => p.Comunas)
                 .HasForeignKey(d => new { d.CiudadCodigo, d.RegionCodigo, d.PaisCodigo })
@@ -164,6 +166,25 @@ public partial class Context : DbContext
                 .HasConstraintName("FK_MenuId_Menu");
         });
 
+        modelBuilder.Entity<Negocio>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("negocio");
+
+            entity.HasIndex(e => e.DuenoId, "FK_DueñoId_Persona_idx");
+
+            entity.HasIndex(e => e.ComunaCodigo, "FK_NegocioCodigo_Comuna_idx");
+
+            entity.Property(e => e.Direccion).HasMaxLength(45);
+            entity.Property(e => e.Nombre).HasMaxLength(45);
+            entity.Property(e => e.Rut).HasMaxLength(45);
+
+            entity.HasOne(d => d.Dueno).WithMany(p => p.Negocios)
+                .HasForeignKey(d => d.DuenoId)
+                .HasConstraintName("FK_DuenoId_Persona");
+        });
+
         modelBuilder.Entity<Pai>(entity =>
         {
             entity.HasKey(e => e.Codigo).HasName("PRIMARY");
@@ -179,7 +200,7 @@ public partial class Context : DbContext
 
             entity.ToTable("persona");
 
-            entity.HasIndex(e => new { e.ComunaCodigo, e.CiudadCodigo, e.RegionCodigo, e.PaisCodigo }, "FK_ComunaCodigo_Persona");
+            entity.HasIndex(e => e.ComunaCodigo, "FK_ComunaCodigo_Persona");
 
             entity.HasIndex(e => e.Id, "idx_Id");
 
@@ -196,10 +217,6 @@ public partial class Context : DbContext
             entity.Property(e => e.RutDigito)
                 .HasMaxLength(1)
                 .IsFixedLength();
-
-            entity.HasOne(d => d.Comuna).WithMany(p => p.Personas)
-                .HasForeignKey(d => new { d.ComunaCodigo, d.CiudadCodigo, d.RegionCodigo, d.PaisCodigo })
-                .HasConstraintName("FK_Codigos_Persona");
         });
 
         modelBuilder.Entity<Region>(entity =>
@@ -338,11 +355,12 @@ public partial class Context : DbContext
 
             entity.ToTable("usuario", tb => tb.HasComment("Tabla usuarios registrados"));
 
+            entity.HasIndex(e => e.Id, "FK_PersonaId_idx");
+
             entity.HasIndex(e => e.RolCodigo, "FK_TipoUsuarioCodigo_TipoUsuario_idx");
 
             entity.Property(e => e.Clave).HasMaxLength(256);
             entity.Property(e => e.Email).HasMaxLength(200);
-            entity.Property(e => e.Nombre).HasMaxLength(45);
 
             entity.HasOne(d => d.IdNavigation).WithOne(p => p.Usuario)
                 .HasForeignKey<Usuario>(d => d.Id)

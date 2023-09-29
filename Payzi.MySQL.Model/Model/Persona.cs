@@ -37,15 +37,13 @@ public partial class Persona
 
     public string? Observaciones { get; set; }
 
-    public int? RegionCodigo { get; set; }
-
     public int? PaisCodigo { get; set; }
+
+    public int? RegionCodigo { get; set; }
 
     public int? CiudadCodigo { get; set; }
 
     public int? ComunaCodigo { get; set; }
 
-    public virtual Comuna? Comuna { get; set; }
-
-    public virtual Usuario? Usuario { get; set; }
+    public virtual ICollection<Negocio> Negocios { get; set; } = new List<Negocio>();
 }

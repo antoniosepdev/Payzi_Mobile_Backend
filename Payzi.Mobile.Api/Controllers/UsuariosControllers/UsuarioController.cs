@@ -2,12 +2,12 @@
 using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Common;
 using Payzi.Mobile.Api.Controllers.Common;
-using Payzi.Mobile.Api.DTO.Usuarios;
-using Payzi.Mobile.Api.Models.Usuarios;
+using Payzi.Mobile.Api.DTO.UsuariosDTO;
+using Payzi.Mobile.Api.Models.UsuariosModels;
 using Payzi.Mobile.Api.Services.Usuarios;
 using Payzi.MySQL.Data;
 
-namespace Payzi.Mobile.Api.Controllers.Usuarios
+namespace Payzi.Mobile.Api.Controllers.UsuariosControllers
 {
     public class UsuarioController : BaseController, IUsuario
     {
@@ -42,9 +42,17 @@ namespace Payzi.Mobile.Api.Controllers.Usuarios
             {
                 var db = dbConnection();
 
-                var sql = @"INSERT INTO usuario(Id, Rut, Nombre, Email, Clave, Bloqueo) VALUES (@Id, @Rut, @Nombre, @Email, @Clave, @Bloqueo) ";
+                var sql = @"INSERT INTO usuario(Id, Email, Clave, Bloqueo, RolCodigo) VALUES (@Id, @Email, @Clave, @Bloqueo, @RolCodigo) ";
 
-                var result = await db.ExecuteAsync(sql, new { usuario.Id, usuario.Rut, usuario.Nombre, usuario.Email, usuario.Clave, usuario.Bloqueo });
+                //usuario.Id = Guid.NewGuid();
+
+                usuario.Id = usuario.Id;
+                usuario.Email = usuario.Email;
+                usuario.Clave = Filters.Procesadores.Encriptar.EncryptPassword(usuario.Clave);
+                usuario.Bloqueo = false;
+                usuario.RolCodigo = usuario.RolCodigo;
+
+                var result = await db.ExecuteAsync(sql, new { usuario.Id, usuario.Email, usuario.Clave, usuario.Bloqueo, usuario.RolCodigo });
 
                 usuarioModel.Success = true;
                 usuarioModel.Data = usuario;

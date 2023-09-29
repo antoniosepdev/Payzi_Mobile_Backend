@@ -10,8 +10,6 @@ public partial class Usuario
 {
     public Guid Id { get; set; }
 
-    public string Nombre { get; set; } = null!;
-
     public string? Email { get; set; }
 
     public string? Clave { get; set; }
@@ -20,7 +18,7 @@ public partial class Usuario
 
     public int RolCodigo { get; set; }
 
-    public virtual Persona IdNavigation { get; set; } = null!;
+    public virtual Negocio IdNavigation { get; set; } = null!;
 
     public virtual Rol RolCodigoNavigation { get; set; } = null!;
 
