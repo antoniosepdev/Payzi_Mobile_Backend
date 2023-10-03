@@ -9,3 +9,4 @@ C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobil
 C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi.Abstraction\obj\Debug\net6.0\refint\Payzi.Abstraction.dll
 C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi.Abstraction\obj\Debug\net6.0\Payzi.Abstraction.pdb
 C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi.Abstraction\obj\Debug\net6.0\ref\Payzi.Abstraction.dll
+C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi.Abstraction\obj\Debug\net6.0\Payzi.Abstraction.csproj.AssemblyReference.cache

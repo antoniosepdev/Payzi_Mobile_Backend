@@ -8,9 +8,14 @@
 
   <ItemGroup>
     <Folder Include="Classes\" />
-    <Folder Include="StaticParams\" />
     <Folder Include="Security\" />
-    <Folder Include="PartialOverload\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LinqKit.EntityFramework" Version="1.2.4" />
+    <PackageReference Include="Mapster" Version="7.4.0" />
+    <PackageReference Include="Mapster.DependencyInjection" Version="1.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
   </ItemGroup>
 
 </Project>

@@ -23,6 +23,8 @@ public partial class Negocio
 
     public int? PaisCodigo { get; set; }
 
+    public virtual Comuna? ComunaCodigoNavigation { get; set; }
+
     public virtual Persona? Dueno { get; set; }
 
     public virtual Usuario? Usuario { get; set; }

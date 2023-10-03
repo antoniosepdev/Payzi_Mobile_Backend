@@ -12,3 +12,6 @@ C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobil
 C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi.MySQL.Model\obj\Debug\net6.0\Payzi.MySQL.Model.pdb
 C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi.MySQL.Model\obj\Debug\net6.0\Payzi.MySQL.Model.genruntimeconfig.cache
 C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi.MySQL.Model\obj\Debug\net6.0\ref\Payzi.MySQL.Model.dll
+C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi.MySQL.Model\bin\Debug\net6.0\Payzi.Abstraction.dll
+C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi.MySQL.Model\bin\Debug\net6.0\Payzi.Abstraction.pdb
+C:\Users\suffe\Documents\Github\Repositorios Antonio Sepulveda\Payzi\Payzi_Mobile_Backend\Payzi.MySQL.Model\obj\Debug\net6.0\Payzi.MySQL.Model.csproj.CopyComplete

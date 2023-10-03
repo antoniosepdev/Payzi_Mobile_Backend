@@ -45,5 +45,7 @@ public partial class Persona
 
     public int? ComunaCodigo { get; set; }
 
+    public virtual Comuna? ComunaCodigoNavigation { get; set; }
+
     public virtual ICollection<Negocio> Negocios { get; set; } = new List<Negocio>();
 }

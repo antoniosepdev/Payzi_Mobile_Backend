@@ -85,7 +85,7 @@ public partial class Context : DbContext
 
         modelBuilder.Entity<Comuna>(entity =>
         {
-            entity.HasKey(e => new { e.Codigo, e.CiudadCodigo, e.RegionCodigo, e.PaisCodigo }).HasName("PRIMARY");
+            entity.HasKey(e => e.Codigo).HasName("PRIMARY");
 
             entity.ToTable("comuna");
 
@@ -180,6 +180,10 @@ public partial class Context : DbContext
             entity.Property(e => e.Nombre).HasMaxLength(45);
             entity.Property(e => e.Rut).HasMaxLength(45);
 
+            entity.HasOne(d => d.ComunaCodigoNavigation).WithMany(p => p.Negocios)
+                .HasForeignKey(d => d.ComunaCodigo)
+                .HasConstraintName("FK_NegocioCodigo_Comuna");
+
             entity.HasOne(d => d.Dueno).WithMany(p => p.Negocios)
                 .HasForeignKey(d => d.DuenoId)
                 .HasConstraintName("FK_DuenoId_Persona");
@@ -217,6 +221,10 @@ public partial class Context : DbContext
             entity.Property(e => e.RutDigito)
                 .HasMaxLength(1)
                 .IsFixedLength();
+
+            entity.HasOne(d => d.ComunaCodigoNavigation).WithMany(p => p.Personas)
+                .HasForeignKey(d => d.ComunaCodigo)
+                .HasConstraintName("FK_Codigos_Persona");
         });
 
         modelBuilder.Entity<Region>(entity =>
@@ -360,7 +368,11 @@ public partial class Context : DbContext
             entity.HasIndex(e => e.RolCodigo, "FK_TipoUsuarioCodigo_TipoUsuario_idx");
 
             entity.Property(e => e.Clave).HasMaxLength(256);
+            entity.Property(e => e.Creacion).HasColumnType("datetime");
             entity.Property(e => e.Email).HasMaxLength(200);
+            entity.Property(e => e.FechaIntentoFallido).HasColumnType("datetime");
+            entity.Property(e => e.UltimoAcceso).HasColumnType("datetime");
+            entity.Property(e => e.UltimoCambioPassword).HasColumnType("datetime");
 
             entity.HasOne(d => d.IdNavigation).WithOne(p => p.Usuario)
                 .HasForeignKey<Usuario>(d => d.Id)

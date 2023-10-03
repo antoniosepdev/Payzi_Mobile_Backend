@@ -18,4 +18,8 @@ public partial class Comuna
     public int? CodigoPostal { get; set; }
 
     public virtual Ciudad Ciudad { get; set; } = null!;
+
+    public virtual ICollection<Negocio> Negocios { get; set; } = new List<Negocio>();
+
+    public virtual ICollection<Persona> Personas { get; set; } = new List<Persona>();
 }
