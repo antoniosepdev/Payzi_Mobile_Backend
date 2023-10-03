@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Payzi.Mobile.Api.Startup.FluentValidation;
 using Payzi.Mobile.Api.Startup.IEndpoint;
 using Payzi.Mobile.Api.Startup.Swagger;
@@ -28,6 +29,9 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
     options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
 });
+
+
+builder.Services.AddDbContext<Payzi.MySQL.Model.Context>(x => x.UseSqlServer(connectionStrings, x => x.EnableRetryOnFailure()));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

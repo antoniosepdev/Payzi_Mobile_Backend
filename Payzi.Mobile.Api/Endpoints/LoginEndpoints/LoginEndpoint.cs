@@ -12,9 +12,9 @@ namespace Payzi.Mobile.Api.Endpoints.LoginEndpoints
     {
         public IEndpointRouteBuilder AddRoutes(IEndpointRouteBuilder endpoints)
         {
-            endpoints.MapPost("/api/Login", [AllowAnonymous] async (HttpContext httpContext, MySQL.Data.MySQLConfiguration connectionString, [FromBody] LoginDTO loginDTO) =>
+            endpoints.MapPost("/api/Login", [AllowAnonymous] async (HttpContext httpContext, Payzi.MySQL.Model.Context context, [FromBody] LoginDTO loginDTO) =>
             {
-                LoginController loginController = new LoginController(httpContext, connectionString);
+                LoginController loginController = new LoginController(httpContext, context);
 
                 return await loginController.Login(loginDTO);
 

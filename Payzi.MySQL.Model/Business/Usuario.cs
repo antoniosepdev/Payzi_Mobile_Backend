@@ -2,7 +2,7 @@
 using Payzi.Abstraction.PartialOverload;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,8 +17,7 @@ namespace Payzi.MySQL.Model.Business
 
             Payzi.MySQL.Model.Business.Usuario usuario = user.SingleOrDefault<Payzi.MySQL.Model.Business.Usuario>();
 
-            //return usuario;
-            return null;
+            return usuario;
         }
 
         public static async Task<List<Usuario>> GetAllAsync(Payzi.MySQL.Model.Context context, Guid aplicacionId)

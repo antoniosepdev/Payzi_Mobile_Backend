@@ -12,10 +12,10 @@ namespace Payzi.Mobile.Api.Controllers.LoginControllers
         private readonly Payzi.MySQL.Model.Context _context;
         private readonly MySQL.Data.MySQLConfiguration _connectionString;
 
-        public LoginController(HttpContext httpContext, MySQL.Data.MySQLConfiguration connectionString)
-            : base(httpContext, connectionString)
+        public LoginController(HttpContext httpContext, Payzi.MySQL.Model.Context context)
+            : base(httpContext, context)
         {
-            this._connectionString = connectionString;
+            this._context = context;
         }
 
         public async Task<IResult> Login([FromBody] LoginDTO loginDTO)

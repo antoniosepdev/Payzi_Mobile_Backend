@@ -42,17 +42,19 @@ namespace Payzi.Mobile.Api.Controllers.UsuariosControllers
             {
                 var db = dbConnection();
 
-                var sql = @"INSERT INTO usuario(Id, Email, Clave, Bloqueo, RolCodigo) VALUES (@Id, @Email, @Clave, @Bloqueo, @RolCodigo) ";
+                var sql = @"INSERT INTO usuario(Id, Email, Clave, Aprobado, Bloqueado, RolCodigo, Creacion) VALUES (@Id, @Email, @Clave, @Aprobado, @Bloqueado, @RolCodigo, @Creacion) ";
 
                 //usuario.Id = Guid.NewGuid();
 
                 usuario.Id = usuario.Id;
                 usuario.Email = usuario.Email;
                 usuario.Clave = Filters.Procesadores.Encriptar.EncryptPassword(usuario.Clave);
-                usuario.Bloqueo = false;
+                usuario.Aprobado = true;
+                usuario.Bloqueado = false;
                 usuario.RolCodigo = usuario.RolCodigo;
+                usuario.Creacion = DateTime.Now;
 
-                var result = await db.ExecuteAsync(sql, new { usuario.Id, usuario.Email, usuario.Clave, usuario.Bloqueo, usuario.RolCodigo });
+                var result = await db.ExecuteAsync(sql, new { usuario.Id, usuario.Email, usuario.Clave, usuario.Aprobado, usuario.Bloqueado, usuario.RolCodigo, usuario.Creacion });
 
                 usuarioModel.Success = true;
                 usuarioModel.Data = usuario;

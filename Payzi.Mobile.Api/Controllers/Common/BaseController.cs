@@ -17,5 +17,13 @@ namespace Payzi.Mobile.Api.Controllers.Common
 
             this._connectionString = connectionString;
         }
+
+        public BaseController(HttpContext httpContext, Payzi.MySQL.Model.Context context)
+        {
+            this._httpContext = httpContext;
+
+            this._context = context;
+        }
+
     }
 }
