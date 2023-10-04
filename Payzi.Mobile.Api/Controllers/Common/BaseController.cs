@@ -1,4 +1,4 @@
-﻿using Payzi.MySQL.Data;
+﻿using Payzi;
 
 namespace Payzi.Mobile.Api.Controllers.Common
 {
@@ -6,24 +6,13 @@ namespace Payzi.Mobile.Api.Controllers.Common
     {
         private HttpContext _httpContext;
 
-        private Payzi.MySQL.Model.Context _context;
+        private Payzi.Context.Context _context;
 
-        private MySQLConfiguration _connectionString;
-
-
-        public BaseController(HttpContext httpContext, MySQLConfiguration connectionString)
-        {
-            this._httpContext = httpContext;
-
-            this._connectionString = connectionString;
-        }
-
-        public BaseController(HttpContext httpContext, Payzi.MySQL.Model.Context context)
+        public BaseController(HttpContext httpContext, Payzi.Context.Context context)
         {
             this._httpContext = httpContext;
 
             this._context = context;
         }
-
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MySql.Data.MySqlClient;
 using Payzi.Mobile.Api.Controllers.LoginControllers;
 using Payzi.Mobile.Api.DTO.LoginDTO;
 using Payzi.Mobile.Api.Models.LoginModels;
@@ -12,7 +11,7 @@ namespace Payzi.Mobile.Api.Endpoints.LoginEndpoints
     {
         public IEndpointRouteBuilder AddRoutes(IEndpointRouteBuilder endpoints)
         {
-            endpoints.MapPost("/api/Login", [AllowAnonymous] async (HttpContext httpContext, Payzi.MySQL.Model.Context context, [FromBody] LoginDTO loginDTO) =>
+            endpoints.MapPost("/api/Login", [AllowAnonymous] async (HttpContext httpContext, Payzi.Context.Context context, [FromBody] LoginDTO loginDTO) =>
             {
                 LoginController loginController = new LoginController(httpContext, context);
 

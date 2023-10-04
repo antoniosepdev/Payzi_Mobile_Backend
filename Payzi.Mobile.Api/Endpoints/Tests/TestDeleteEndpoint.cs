@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Payzi.Mobile.Api.Controllers.Tests;
 using Payzi.Mobile.Api.DTO.Tests;
-using Payzi.MySQL.Data;
+
 
 namespace Payzi.Mobile.Api.Endpoints.Tests
 {
@@ -10,9 +10,9 @@ namespace Payzi.Mobile.Api.Endpoints.Tests
     {
         public IEndpointRouteBuilder AddRoutes(IEndpointRouteBuilder endpoints)
         {
-            endpoints.MapDelete("/api/Test/Delete", [AllowAnonymous] async (HttpContext httpContext, MySQLConfiguration connectionString, [FromBody] TestDTO testDTO) =>
+            endpoints.MapDelete("/api/Test/Delete", [AllowAnonymous] async (HttpContext httpContext, Payzi.Context.Context context, [FromBody] TestDTO testDTO) =>
             {
-                TestController testController = new TestController(httpContext, connectionString);
+                TestController testController = new TestController(httpContext, context);
 
                 return await testController.Test(testDTO);
 

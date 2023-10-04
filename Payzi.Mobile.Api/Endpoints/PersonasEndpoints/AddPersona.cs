@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Payzi.Mobile.Api.Controllers.PersonasControllers;
 using Payzi.Mobile.Api.DTO.PersonasDTO;
 using Payzi.Mobile.Api.DTO.UsuariosDTO;
-using Payzi.MySQL.Data;
+
 
 namespace Payzi.Mobile.Api.Endpoints.PersonasEndpoints
 {
@@ -11,9 +11,9 @@ namespace Payzi.Mobile.Api.Endpoints.PersonasEndpoints
     {
         public IEndpointRouteBuilder AddRoutes(IEndpointRouteBuilder endpoints)
         {
-            endpoints.MapPost("/Persona/Add", [AllowAnonymous] async (HttpContext httpContext, MySQLConfiguration connectionString, [FromBody] PersonaDTO personaDTO) =>
+            endpoints.MapPost("/Persona/Add", [AllowAnonymous] async (HttpContext httpContext, Payzi.Context.Context context, [FromBody] PersonaDTO personaDTO) =>
             {
-                PersonaController personaController = new PersonaController(httpContext, connectionString);
+                PersonaController personaController = new PersonaController(httpContext, context);
 
                 return await personaController.AddPerson(personaDTO);
 

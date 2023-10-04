@@ -6201,9 +6201,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\suffe\\Documents\\Github\\Repositorios Antonio Sepulveda\\Payzi\\Payzi_Mobile_Backend\\Payzi.MySQL.Model\\Payzi.MySQL.Model.csproj",
-      "projectName": "Payzi.MySQL.Model",
-      "projectPath": "C:\\Users\\suffe\\Documents\\Github\\Repositorios Antonio Sepulveda\\Payzi\\Payzi_Mobile_Backend\\Payzi.MySQL.Model\\Payzi.MySQL.Model.csproj",
+      "projectUniqueName": "C:\\Users\\suffe\\Documents\\Github\\Repositorios Antonio Sepulveda\\Payzi\\Payzi_Mobile_Backend\\Payzi.MySQL.Model\\Payzi.MySQL.Models.csproj",
+      "projectName": "Payzi.MySQL.Models",
+      "projectPath": "C:\\Users\\suffe\\Documents\\Github\\Repositorios Antonio Sepulveda\\Payzi\\Payzi_Mobile_Backend\\Payzi.MySQL.Model\\Payzi.MySQL.Models.csproj",
       "packagesPath": "C:\\Users\\suffe\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\suffe\\Documents\\Github\\Repositorios Antonio Sepulveda\\Payzi\\Payzi_Mobile_Backend\\Payzi.MySQL.Model\\obj\\",
       "projectStyle": "PackageReference",

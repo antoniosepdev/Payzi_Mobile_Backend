@@ -1,30 +1,18 @@
-﻿using Dapper;
-using MySql.Data.MySqlClient;
-using Payzi.Mobile.Api.Controllers.Common;
-using Payzi.Mobile.Api.DTO.NegociosDTO;
+﻿using Payzi.Mobile.Api.Controllers.Common;
 using Payzi.Mobile.Api.DTO.PersonasDTO;
-using Payzi.Mobile.Api.Models.NegociosModels;
 using Payzi.Mobile.Api.Models.PersonasModels;
-using Payzi.Mobile.Api.Models.UsuariosModels;
 using Payzi.Mobile.Api.Services.PersonasServices;
-using Payzi.MySQL.Data;
 
 namespace Payzi.Mobile.Api.Controllers.PersonasControllers
 {
     public class PersonaController : BaseController, IPersona
     {
-        private MySQLConfiguration _connectionString;
+        private Payzi.Context.Context _context;
 
-        public PersonaController(HttpContext httpContext, MySQLConfiguration connectionString)
-            : base(httpContext, connectionString)
+        public PersonaController(HttpContext httpContext, Payzi.Context.Context context)
+            : base(httpContext, context)
         {
-            _connectionString = connectionString;
-        }
-
-        protected MySqlConnection dbConnection()
-        {
-            return new MySqlConnection(_connectionString.ConnectionString);
-        }
+            _context = context;        }
 
         public async Task<IResult> GetPerson()
         {
@@ -37,7 +25,7 @@ namespace Payzi.Mobile.Api.Controllers.PersonasControllers
 
             try
             {
-                var db = dbConnection();
+                //var db = dbConnection();
 
                 var sql = @"INSERT INTO persona(Id, Rut, RutCuerpo, RutDigito, NombreCompleto, NombrePrimario, NombreSecundario, ApellidoPaterno, ApellidoMaterno, Email, SexoCodigo, FechaNacimiento, Direccion, Telefono, Celular, Observaciones, PaisCodigo, RegionCodigo, CiudadCodigo, ComunaCodigo)
                             VALUES(@Id, @Rut, @RutCuerpo, @RutDigito, @NombreCompleto, @NombrePrimario, @NombreSecundario, @ApellidoPaterno, @ApellidoMaterno, @Email, @SexoCodigo, @FechaNacimiento, @Direccion, @Telefono, @Celular, @Observaciones, @PaisCodigo, @RegionCodigo, @CiudadCodigo, @ComunaCodigo) ";
@@ -64,7 +52,7 @@ namespace Payzi.Mobile.Api.Controllers.PersonasControllers
                 personaDTO.CiudadCodigo = personaDTO.CiudadCodigo;
                 personaDTO.ComunaCodigo = personaDTO.ComunaCodigo;
 
-                var result = await db.ExecuteAsync(sql, new { personaDTO.Id, personaDTO.Rut, personaDTO.RutCuerpo, personaDTO.RutDigito, personaDTO.NombreCompleto, personaDTO.NombrePrimario, personaDTO.NombreSecundario, personaDTO.ApellidoPaterno, personaDTO.ApellidoMaterno, personaDTO.Email, personaDTO.SexoCodigo, personaDTO.FechaNacimiento, personaDTO.Direccion, personaDTO.Telefono, personaDTO.Celular, personaDTO.Observaciones, personaDTO.PaisCodigo, personaDTO.RegionCodigo, personaDTO.CiudadCodigo, personaDTO.ComunaCodigo});
+                //var result = await db.ExecuteAsync(sql, new { personaDTO.Id, personaDTO.Rut, personaDTO.RutCuerpo, personaDTO.RutDigito, personaDTO.NombreCompleto, personaDTO.NombrePrimario, personaDTO.NombreSecundario, personaDTO.ApellidoPaterno, personaDTO.ApellidoMaterno, personaDTO.Email, personaDTO.SexoCodigo, personaDTO.FechaNacimiento, personaDTO.Direccion, personaDTO.Telefono, personaDTO.Celular, personaDTO.Observaciones, personaDTO.PaisCodigo, personaDTO.RegionCodigo, personaDTO.CiudadCodigo, personaDTO.ComunaCodigo });
                 personaModel.Success = true;
                 personaModel.Data = personaDTO;
 

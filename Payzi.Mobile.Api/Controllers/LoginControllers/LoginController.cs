@@ -9,10 +9,10 @@ namespace Payzi.Mobile.Api.Controllers.LoginControllers
 {
     public class LoginController : BaseController, ILogin
     {
-        private readonly Payzi.MySQL.Model.Context _context;
-        private readonly MySQL.Data.MySQLConfiguration _connectionString;
+        private readonly Payzi.Context.Context _context;
 
-        public LoginController(HttpContext httpContext, Payzi.MySQL.Model.Context context)
+
+        public LoginController(HttpContext httpContext, Payzi.Context.Context context)
             : base(httpContext, context)
         {
             this._context = context;
@@ -30,13 +30,13 @@ namespace Payzi.Mobile.Api.Controllers.LoginControllers
                     Context = this._context 
                 };
 
-                (Payzi.MySQL.Model.Enumerate.LoginStatus loginStatus, string token) = await Payzi.MySQL.Model.Business.Account.Logear(loginParametros);
+                (Payzi.Enumerate.LoginStatus loginStatus, string token) = await Payzi.MySQL.Model.Business.Account.Logear(loginParametros);
 
                 Payzi.Mobile.Api.Models.LoginModels.LoginModel login = new Payzi.Mobile.Api.Models.LoginModels.LoginModel();
 
                 switch (loginStatus)
                 {
-                    case Payzi.MySQL.Model.Enumerate.LoginStatus.InvalidRunOrPassword:
+                    case Payzi.Enumerate.LoginStatus.InvalidRunOrPassword:
                         {
                             login.Code = (int)StatusCodes.Status400BadRequest;
                             login.Message = "R.U.N. o contraseña incorrectos. Verifique sus datos e inténte acceder nuevamente.";
@@ -45,7 +45,7 @@ namespace Payzi.Mobile.Api.Controllers.LoginControllers
 
                             return Results.BadRequest(login);
                         }
-                    case Payzi.MySQL.Model.Enumerate.LoginStatus.NotAccessAllowed:
+                    case Payzi.Enumerate.LoginStatus.NotAccessAllowed:
                         {
                             login.Code = (int)StatusCodes.Status401Unauthorized;
                             login.Message = "Usted no tiene suficientes permisos para ingresar a la aplicación. Por favor contacte al administrador.";
@@ -54,7 +54,7 @@ namespace Payzi.Mobile.Api.Controllers.LoginControllers
 
                             return Results.BadRequest(login);
                         }
-                    case Payzi.MySQL.Model.Enumerate.LoginStatus.UserApprovedOut:
+                    case Payzi.Enumerate.LoginStatus.UserApprovedOut:
                         {
                             login.Code = (int)StatusCodes.Status403Forbidden;
                             login.Message = "Su cuenta de acceso ha sido caducada. Por favor contacte al administrador del sistema.";
@@ -63,7 +63,7 @@ namespace Payzi.Mobile.Api.Controllers.LoginControllers
 
                             return Results.BadRequest(login);
                         }
-                    case Payzi.MySQL.Model.Enumerate.LoginStatus.UserLocked:
+                    case Payzi.Enumerate.LoginStatus.UserLocked:
                         {
                             login.Code = (int)StatusCodes.Status423Locked;
                             login.Message = "Su cuenta de acceso ha sido bloqueada por exceder el máximo de intentos fallidos permitidos.";

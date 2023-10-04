@@ -1,16 +1,17 @@
 ﻿using Payzi.Mobile.Api.Controllers.Common;
 using Payzi.Mobile.Api.DTO.Tests;
 using Payzi.Mobile.Api.Services.Tests;
-using Payzi.MySQL.Data;
 
 namespace Payzi.Mobile.Api.Controllers.Tests
 {
     public class TestController : BaseController, ITest
     {
-        public TestController(HttpContext httpContext, MySQLConfiguration connectionString)//Context context)
-        : base(httpContext, connectionString)
+        private Payzi.Context.Context _context;
+
+        public TestController(HttpContext httpContext, Payzi.Context.Context context)//Context context)
+        : base(httpContext, context)
         {
-            //_remunerationsContext = remunerationsContext;
+            _context = context;
         }
 
         public async Task<IResult> Test(TestDTO testDTO)

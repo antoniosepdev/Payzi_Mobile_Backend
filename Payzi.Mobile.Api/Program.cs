@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Payzi.Mobile.Api.Startup.FluentValidation;
 using Payzi.Mobile.Api.Startup.IEndpoint;
 using Payzi.Mobile.Api.Startup.Swagger;
-using Payzi.MySQL.Data;
+ 
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,9 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 string? connectionStrings = builder.Configuration.GetConnectionString("Payzi");
 
-MySQLConfiguration mySQLConnectionConfig = new MySQLConfiguration(builder.Configuration.GetConnectionString("Payzi"));
-
-builder.Services.AddSingleton(mySQLConnectionConfig);
+builder.Services.AddSingleton(connectionStrings);
 
 builder.Services.RegisterServices(builder.Configuration);
 
@@ -31,7 +29,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 });
 
 
-builder.Services.AddDbContext<Payzi.MySQL.Model.Context>(x => x.UseSqlServer(connectionStrings, x => x.EnableRetryOnFailure()));
+builder.Services.AddDbContext<Payzi.Context.Context>(x => x.UseSqlServer(connectionStrings, x => x.EnableRetryOnFailure()));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -23,8 +23,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Payzi.Abstraction\Payzi.Abstraction.csproj" />
-    <ProjectReference Include="..\Payzi.MySQL.Data\Payzi.MySQL.Data.csproj" />
-    <ProjectReference Include="..\Payzi.MySQL.Model\Payzi.MySQL.Model.csproj" />
     <ProjectReference Include="..\Payzi\Payzi.csproj" />
   </ItemGroup>
 

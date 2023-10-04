@@ -1,27 +1,19 @@
-﻿using Dapper;
-using MySql.Data.MySqlClient;
-using MySqlX.XDevAPI.Common;
-using Payzi.Mobile.Api.Controllers.Common;
+﻿using Payzi.Mobile.Api.Controllers.Common;
 using Payzi.Mobile.Api.DTO.UsuariosDTO;
 using Payzi.Mobile.Api.Models.UsuariosModels;
 using Payzi.Mobile.Api.Services.Usuarios;
-using Payzi.MySQL.Data;
+
 
 namespace Payzi.Mobile.Api.Controllers.UsuariosControllers
 {
     public class UsuarioController : BaseController, IUsuario
     {
-        private MySQLConfiguration _connectionString;
+        private Payzi.Context.Context _context;
 
-        public UsuarioController(HttpContext httpContext, MySQLConfiguration connectionString)
-            : base(httpContext, connectionString)
+        public UsuarioController(HttpContext httpContext, Payzi.Context.Context context)
+            : base(httpContext, context)
         {
-            _connectionString = connectionString;
-        }
-
-        protected MySqlConnection dbConnection()
-        {
-            return new MySqlConnection(_connectionString.ConnectionString);
+            _context = context;
         }
 
         public async Task<IEnumerable<UsuarioController>> GetAllUsers()
@@ -40,7 +32,7 @@ namespace Payzi.Mobile.Api.Controllers.UsuariosControllers
 
             try
             {
-                var db = dbConnection();
+                //var db = dbConnection();
 
                 var sql = @"INSERT INTO usuario(Id, Email, Clave, Aprobado, Bloqueado, RolCodigo, Creacion) VALUES (@Id, @Email, @Clave, @Aprobado, @Bloqueado, @RolCodigo, @Creacion) ";
 
@@ -54,14 +46,14 @@ namespace Payzi.Mobile.Api.Controllers.UsuariosControllers
                 usuario.RolCodigo = usuario.RolCodigo;
                 usuario.Creacion = DateTime.Now;
 
-                var result = await db.ExecuteAsync(sql, new { usuario.Id, usuario.Email, usuario.Clave, usuario.Aprobado, usuario.Bloqueado, usuario.RolCodigo, usuario.Creacion });
+                //var result = await db.ExecuteAsync(sql, new { usuario.Id, usuario.Email, usuario.Clave, usuario.Aprobado, usuario.Bloqueado, usuario.RolCodigo, usuario.Creacion });
 
                 usuarioModel.Success = true;
                 usuarioModel.Data = usuario;
 
                 return Results.Ok(usuarioModel);
             }
-            catch 
+            catch
             {
                 usuarioModel.Success = false;
                 usuarioModel.Data = null;

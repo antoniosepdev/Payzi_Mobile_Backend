@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UqxzuYpCaCsCd9bWNcQDs4/4T8Xg1EexyMjeiGBLNc8KA3sIu81M0zEc6sF1sv7YAkERhw4bBpfn9nGECi62rA==",
+  "dgSpecHash": "F02I9cQ5pZaHNdHNtErpjCizLCnjcgbZ3ij9JkVxcuxqXkwkAAMrPfuIzzOk6S5udU/NCkELOzqEwVCFb3ArJw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\suffe\\Documents\\Github\\Repositorios Antonio Sepulveda\\Payzi\\Payzi_Mobile_Backend\\Payzi.MySQL.Model\\Payzi.MySQL.Model.csproj",
+  "projectFilePath": "C:\\Users\\suffe\\Documents\\Github\\Repositorios Antonio Sepulveda\\Payzi\\Payzi_Mobile_Backend\\Payzi.MySQL.Model\\Payzi.MySQL.Models.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\suffe\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\suffe\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

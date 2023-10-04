@@ -1,29 +1,20 @@
-﻿using Dapper;
-using MySql.Data.MySqlClient;
-using Payzi.Mobile.Api.Controllers.Common;
+﻿using Payzi.Mobile.Api.Controllers.Common;
 using Payzi.Mobile.Api.DTO.NegociosDTO;
 using Payzi.Mobile.Api.DTO.PersonasDTO;
 using Payzi.Mobile.Api.Models.NegociosModels;
 using Payzi.Mobile.Api.Models.UsuariosModels;
 using Payzi.Mobile.Api.Services.NegociosServices;
-using Payzi.MySQL.Data;
-using Payzi.MySQL.Model;
 
 namespace Payzi.Mobile.Api.Controllers.NegociosControllers
 {
     public class NegocioController : BaseController, INegocio
     {
-        private MySQLConfiguration _connectionString;
+        private Payzi.Context.Context _context;
 
-        public NegocioController(HttpContext httpContext, MySQLConfiguration connectionString)
-            : base(httpContext, connectionString)
+        public NegocioController(HttpContext httpContext, Payzi.Context.Context context)
+            : base(httpContext, context)
         {
-            _connectionString = connectionString;
-        }
-
-        protected MySqlConnection dbConnection()
-        {
-            return new MySqlConnection(_connectionString.ConnectionString);
+            _context = context;
         }
 
         public async Task<IResult> GetNegocio()
@@ -37,10 +28,10 @@ namespace Payzi.Mobile.Api.Controllers.NegociosControllers
 
             try
             {
-                var db = dbConnection();
+                //var db = dbConnection();
 
-                var sql = @"INSERT INTO negocio(Id, Nombre, Rut, Direccion, DuenoId, ComunaCodigo, CiudadCodigo, RegionCodigo, PaisCodigo) 
-                            VALUES (@Id, @Nombre, @Rut, @Direccion, @DuenoId, @ComunaCodigo, @CiudadCodigo, @RegionCodigo, @PaisCodigo) ";
+                //var sql = @"INSERT INTO negocio(Id, Nombre, Rut, Direccion, DuenoId, ComunaCodigo, CiudadCodigo, RegionCodigo, PaisCodigo) 
+                //            VALUES (@Id, @Nombre, @Rut, @Direccion, @DuenoId, @ComunaCodigo, @CiudadCodigo, @RegionCodigo, @PaisCodigo) ";
 
                 negocioDTO.Id = Guid.NewGuid();
 
@@ -54,7 +45,7 @@ namespace Payzi.Mobile.Api.Controllers.NegociosControllers
                 //negocioDTO.RegionCodigo = negocioDTO.RegionCodigo;
                 //negocioDTO.PaisCodigo = negocioDTO.PaisCodigo;
 
-                var result = await db.ExecuteAsync(sql, new { negocioDTO.Id, negocioDTO.Nombre, negocioDTO.Rut, negocioDTO.Direccion, negocioDTO.DuenoId, negocioDTO.ComunaCodigo, negocioDTO.CiudadCodigo, negocioDTO.RegionCodigo, negocioDTO.PaisCodigo });
+                //var result = await db.ExecuteAsync(sql, new { negocioDTO.Id, negocioDTO.Nombre, negocioDTO.Rut, negocioDTO.Direccion, negocioDTO.DuenoId, negocioDTO.ComunaCodigo, negocioDTO.CiudadCodigo, negocioDTO.RegionCodigo, negocioDTO.PaisCodigo });
                 negocioModel.Success = true;
                 negocioModel.Data = negocioDTO;
                 return Results.Ok(negocioModel);

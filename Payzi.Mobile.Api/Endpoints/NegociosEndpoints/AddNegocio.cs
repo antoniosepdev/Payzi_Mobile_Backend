@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Payzi.Mobile.Api.Controllers.NegociosControllers;
-using Payzi.Mobile.Api.Controllers.PersonasControllers;
 using Payzi.Mobile.Api.DTO.NegociosDTO;
 using Payzi.Mobile.Api.Models.NegociosModels;
-using Payzi.MySQL.Data;
 
 namespace Payzi.Mobile.Api.Endpoints.PersonasEndpoints
 {
@@ -12,9 +10,9 @@ namespace Payzi.Mobile.Api.Endpoints.PersonasEndpoints
     {
         public IEndpointRouteBuilder AddRoutes(IEndpointRouteBuilder endpoints)
         {
-            endpoints.MapPost("/Negocio/Add", [AllowAnonymous] async (HttpContext httpContext, MySQLConfiguration connectionString, [FromBody] NegocioDTO negocioDTO) =>
+            endpoints.MapPost("/Negocio/Add", [AllowAnonymous] async (HttpContext httpContext, Payzi.Context.Context context, [FromBody] NegocioDTO negocioDTO) =>
             {
-                NegocioController negocioController = new NegocioController(httpContext, connectionString);
+                NegocioController negocioController = new NegocioController(httpContext, context);
 
                 return await negocioController.AddNegocio(negocioDTO);
 
