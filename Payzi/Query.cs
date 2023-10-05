@@ -10,6 +10,33 @@ namespace Payzi
     public static class Query
     {
 
+        #region Negocio
+        internal static IQueryable<Payzi.Model.Negocio> GetNegocios(Payzi.Context.Context context)
+        {
+            return
+                from negocio in context.Negocios
+                select negocio;
+        }
+
+        internal static IQueryable<Payzi.Model.Negocio> GetNegocios(Payzi.Context.Context context, string rut)
+        {
+            return
+                from negocio in GetNegocios(context)
+                where negocio.Rut == rut.ToString()
+                select negocio;
+        }
+
+        internal static IQueryable<Payzi.Model.Negocio> GetNegocios(Payzi.Context.Context context, int cuerpo, char digito)
+        {
+            return
+                from negocio in GetNegocios(context)
+                where negocio.RutCuerpo == cuerpo
+                   && negocio.RutDigito == digito.ToString()
+                select negocio;
+        }
+
+        #endregion
+
         #region Persona
         internal static IQueryable<Payzi.Model.Persona> GetPersonas(Payzi.Context.Context context)
         {
@@ -17,6 +44,7 @@ namespace Payzi
                 from persona in context.Personas
                 select persona;
         }
+
         internal static IQueryable<Payzi.Model.Persona> GetPersonas(Payzi.Context.Context context, int cuerpo, char digito)
         {
             return

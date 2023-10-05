@@ -2,15 +2,19 @@
 {
     public class NegocioDTO
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.Empty;
 
-        public string Nombre { get; set; }
+        public string Nombre { get; set; } = string.Empty;
 
-        public string Rut {  get; set; }
+        public string Rut { get; set; } = string.Empty;
 
-        public string Direccion { get; set; }
+        public int RutCuerpo { get; set; }
 
-        public Guid DuenoId { get; set; }
+        public char RutDigito { get; set; }
+
+        public string Direccion { get; set; } = string.Empty;
+
+        public Guid DuenoId { get; set; } = Guid.Empty;
 
         public int ComunaCodigo { get; set; }
 

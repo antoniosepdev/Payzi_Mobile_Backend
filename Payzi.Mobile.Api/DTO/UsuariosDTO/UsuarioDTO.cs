@@ -2,11 +2,11 @@
 {
     public class UsuarioDTO
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.Empty;
 
-        public string Email { get; set; }
+        public string Email { get; set; } = string.Empty;
 
-        public string Clave { get; set; }
+        public string Clave { get; set; } = string.Empty;
 
         public bool Aprobado {  get; set; }
 
@@ -21,5 +21,7 @@
         public DateTime UltimoCambioPassword { get; set; }
 
         public DateTime FechaIntentoFallido { get; set; }
+
+        public Guid NegocioId { get; set; } = Guid.Empty;
     }
 }

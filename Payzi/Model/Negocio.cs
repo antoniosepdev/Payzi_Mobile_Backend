@@ -11,6 +11,10 @@ public partial class Negocio
 
     public string Rut { get; set; } = null!;
 
+    public int RutCuerpo { get; set; }
+
+    public string RutDigito { get; set; } = null!;
+
     public string Direccion { get; set; } = null!;
 
     public Guid DuenoId { get; set; }
@@ -27,5 +31,5 @@ public partial class Negocio
 
     public virtual Persona Dueno { get; set; } = null!;
 
-    public virtual Usuario IdNavigation { get; set; } = null!;
+    public virtual ICollection<Usuario> Usuarios { get; set; } = new List<Usuario>();
 }

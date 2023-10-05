@@ -21,7 +21,7 @@ namespace Payzi.Mobile.Api.Controllers.PersonasControllers
 
         public async Task<IResult> AddPerson(PersonaDTO personaDTO)
         {
-            PersonaModel personaModel = new PersonaModel();
+            AddPersonaModel addPersonaModel = new AddPersonaModel();
 
             try
             {
@@ -36,8 +36,8 @@ namespace Payzi.Mobile.Api.Controllers.PersonasControllers
                     ApellidoPaterno = personaDTO.ApellidoPaterno,
                     ApellidoMaterno = personaDTO.ApellidoMaterno,
                     NombreCompleto = string.IsNullOrEmpty(personaDTO.ApellidoMaterno) ?
-                  personaDTO.NombrePrimario + ' ' + personaDTO.NombreSecundario + ' ' + personaDTO.ApellidoPaterno :
-                  personaDTO.NombrePrimario + ' ' + personaDTO.NombreSecundario + ' ' + personaDTO.ApellidoPaterno + ' ' + personaDTO.ApellidoMaterno,
+                                      personaDTO.NombrePrimario + ' ' + personaDTO.NombreSecundario + ' ' + personaDTO.ApellidoPaterno :
+                                      personaDTO.NombrePrimario + ' ' + personaDTO.NombreSecundario + ' ' + personaDTO.ApellidoPaterno + ' ' + personaDTO.ApellidoMaterno,
                     Email = personaDTO.Email,
                     SexoCodigo = personaDTO.SexoCodigo,
                     FechaNacimiento = personaDTO.FechaNacimiento,
@@ -54,16 +54,17 @@ namespace Payzi.Mobile.Api.Controllers.PersonasControllers
                 await persona.Save(this._context);
                 await _context.SaveChangesAsync();
 
-                personaModel.Success = true;
-                personaModel.Code = StatusCodes.Status200OK;
-                personaModel.Data = true;
+                addPersonaModel.Success = true;
+                addPersonaModel.Code = StatusCodes.Status200OK;
+                addPersonaModel.Data = true;
 
-                return Results.Ok(personaModel);
+                return Results.Ok(addPersonaModel);
             }
             catch
             {
-                personaModel.Success = false;
-                return Results.BadRequest(personaModel);
+                addPersonaModel.Success = false;
+                addPersonaModel.Code = StatusCodes.Status400BadRequest;
+                return Results.BadRequest(addPersonaModel);
             }
         }
 

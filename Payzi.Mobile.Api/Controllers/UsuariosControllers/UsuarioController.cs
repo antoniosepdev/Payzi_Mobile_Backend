@@ -26,39 +26,43 @@ namespace Payzi.Mobile.Api.Controllers.UsuariosControllers
             return Results.Ok();
         }
 
-        public async Task<IResult> AddUser(UsuarioDTO usuario)
+        public async Task<IResult> AddUser(UsuarioDTO usuarioDTO)
         {
-            UsuarioModel usuarioModel = new UsuarioModel();
+            AddUsuarioModel addUsuarioModel = new AddUsuarioModel();
 
             try
             {
-                //var db = dbConnection();
+                Payzi.Business.Usuario usuario = new Business.Usuario
+                {
+                    Id = Guid.NewGuid(),
+                    Email = usuarioDTO.Email,
+                    Clave = Filters.Procesadores.Encriptar.EncryptPassword(usuarioDTO.Clave),
+                    Aprobado = true,
+                    Bloqueado = false,
+                    RolCodigo = usuarioDTO.RolCodigo,
+                    Creacion = DateTime.Now,
+                    UltimoAcceso = null,
+                    UltimoCambioPassword = null,
+                    FechaIntentoFallido = null,
+                    NegocioId = usuarioDTO.NegocioId
+                };
 
-                var sql = @"INSERT INTO usuario(Id, Email, Clave, Aprobado, Bloqueado, RolCodigo, Creacion) VALUES (@Id, @Email, @Clave, @Aprobado, @Bloqueado, @RolCodigo, @Creacion) ";
+                await usuario.Save(this._context);
+                await _context.SaveChangesAsync();
 
-                //usuario.Id = Guid.NewGuid();
+                addUsuarioModel.Success = true;
+                addUsuarioModel.Code = StatusCodes.Status200OK;
+                addUsuarioModel.Data = true;
 
-                usuario.Id = usuario.Id;
-                usuario.Email = usuario.Email;
-                usuario.Clave = Filters.Procesadores.Encriptar.EncryptPassword(usuario.Clave);
-                usuario.Aprobado = true;
-                usuario.Bloqueado = false;
-                usuario.RolCodigo = usuario.RolCodigo;
-                usuario.Creacion = DateTime.Now;
-
-                //var result = await db.ExecuteAsync(sql, new { usuario.Id, usuario.Email, usuario.Clave, usuario.Aprobado, usuario.Bloqueado, usuario.RolCodigo, usuario.Creacion });
-
-                usuarioModel.Success = true;
-                usuarioModel.Data = usuario;
-
-                return Results.Ok(usuarioModel);
+                return Results.Ok(addUsuarioModel);
             }
             catch
             {
-                usuarioModel.Success = false;
-                usuarioModel.Data = null;
+                addUsuarioModel.Success = false;
+                addUsuarioModel.Code = StatusCodes.Status400BadRequest;
+                addUsuarioModel.Data = false;
 
-                return Results.BadRequest(usuarioModel);
+                return Results.BadRequest(addUsuarioModel);
             }
         }
 

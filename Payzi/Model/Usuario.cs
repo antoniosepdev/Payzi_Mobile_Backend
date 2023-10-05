@@ -25,7 +25,9 @@ public partial class Usuario
 
     public DateTime? FechaIntentoFallido { get; set; }
 
-    public virtual Negocio? Negocio { get; set; }
+    public Guid NegocioId { get; set; }
+
+    public virtual Negocio Negocio { get; set; } = null!;
 
     public virtual Rol RolCodigoNavigation { get; set; } = null!;
 }

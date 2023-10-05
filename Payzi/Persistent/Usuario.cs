@@ -18,7 +18,7 @@ namespace Payzi.Persistent
             {
                 usuario = new Usuario
                 {
-                    Id = this.Id
+                    Id = this.Id,
                 };
 
                 await context.Usuarios.AddAsync(usuario);
@@ -28,9 +28,10 @@ namespace Payzi.Persistent
             usuario.Aprobado = this.Aprobado;
             usuario.Bloqueado = this.Bloqueado;
             usuario.Creacion = this.Creacion;
-            usuario.UltimoAcceso = this.UltimoAcceso;
+            usuario.UltimoAcceso = this.UltimoAcceso == default(DateTime) ? null : this.UltimoAcceso;
             usuario.UltimoCambioPassword = this.UltimoCambioPassword == default(DateTime) ? null : this.UltimoCambioPassword;
             usuario.FechaIntentoFallido = this.FechaIntentoFallido == default(DateTime) ? null : this.FechaIntentoFallido;
+            usuario.NegocioId = this.NegocioId;
         }
 
         public async Task Delete(Payzi.Context.Context context)

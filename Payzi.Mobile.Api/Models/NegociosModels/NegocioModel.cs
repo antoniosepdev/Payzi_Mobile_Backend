@@ -7,4 +7,13 @@ namespace Payzi.Mobile.Api.Models.NegociosModels
     public class NegocioModel : GenericBaseModel<NegocioDTO>
     {
     }
+
+    public class AddNegocioModel : GenericBaseModel<bool>
+    {
+    }
+
+    public class UpdateNegocioModel : GenericBaseModel<bool>
+    {
+    }
+
 }

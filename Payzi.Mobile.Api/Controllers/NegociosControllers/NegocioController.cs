@@ -1,8 +1,6 @@
 ﻿using Payzi.Mobile.Api.Controllers.Common;
 using Payzi.Mobile.Api.DTO.NegociosDTO;
-using Payzi.Mobile.Api.DTO.PersonasDTO;
 using Payzi.Mobile.Api.Models.NegociosModels;
-using Payzi.Mobile.Api.Models.UsuariosModels;
 using Payzi.Mobile.Api.Services.NegociosServices;
 
 namespace Payzi.Mobile.Api.Controllers.NegociosControllers
@@ -24,36 +22,42 @@ namespace Payzi.Mobile.Api.Controllers.NegociosControllers
 
         public async Task<IResult> AddNegocio(NegocioDTO negocioDTO)
         {
-            NegocioModel negocioModel = new NegocioModel();
+            AddNegocioModel addNegocioModel = new AddNegocioModel();
 
             try
             {
-                //var db = dbConnection();
+                Payzi.Business.Negocio negocio = new Payzi.Business.Negocio 
+                {
+                    Id = Guid.NewGuid(),
+                    Nombre = negocioDTO.Nombre,
+                    RutCuerpo = negocioDTO.RutCuerpo,
+                    RutDigito = negocioDTO.RutDigito.ToString(),
+                    Rut = negocioDTO.RutCuerpo.ToString() + '-' + negocioDTO.RutDigito.ToString(),
+                    Direccion = negocioDTO.Direccion,
+                    DuenoId = negocioDTO.DuenoId,
+                    PaisCodigo = negocioDTO.PaisCodigo,
+                    RegionCodigo = negocioDTO.RegionCodigo,
+                    CiudadCodigo = negocioDTO.CiudadCodigo,
+                    ComunaCodigo = negocioDTO.ComunaCodigo
+                };
 
-                //var sql = @"INSERT INTO negocio(Id, Nombre, Rut, Direccion, DuenoId, ComunaCodigo, CiudadCodigo, RegionCodigo, PaisCodigo) 
-                //            VALUES (@Id, @Nombre, @Rut, @Direccion, @DuenoId, @ComunaCodigo, @CiudadCodigo, @RegionCodigo, @PaisCodigo) ";
+                await negocio.Save(this._context);
 
-                negocioDTO.Id = Guid.NewGuid();
+                await _context.SaveChangesAsync();
 
-                negocioDTO.Nombre = negocioDTO.Nombre;
-                negocioDTO.Rut = negocioDTO.Rut;
-                negocioDTO.Direccion = negocioDTO.Direccion;
+                addNegocioModel.Success = true;
+                addNegocioModel.Code = StatusCodes.Status200OK;
+                addNegocioModel.Data = true;
 
-                //negocioDTO.DueñoId = negocioDTO.DueñoId;
-                //negocioDTO.ComunaCodigo = negocioDTO.ComunaCodigo;
-                //negocioDTO.CiudadCodigo = negocioDTO.CiudadCodigo;
-                //negocioDTO.RegionCodigo = negocioDTO.RegionCodigo;
-                //negocioDTO.PaisCodigo = negocioDTO.PaisCodigo;
-
-                //var result = await db.ExecuteAsync(sql, new { negocioDTO.Id, negocioDTO.Nombre, negocioDTO.Rut, negocioDTO.Direccion, negocioDTO.DuenoId, negocioDTO.ComunaCodigo, negocioDTO.CiudadCodigo, negocioDTO.RegionCodigo, negocioDTO.PaisCodigo });
-                negocioModel.Success = true;
-                negocioModel.Data = negocioDTO;
-                return Results.Ok(negocioModel);
+                return Results.Ok(addNegocioModel);
             }
             catch
             {
-                negocioModel.Success = false;
-                return Results.BadRequest();
+                addNegocioModel.Success = false;
+                addNegocioModel.Code = StatusCodes.Status400BadRequest;
+                addNegocioModel.Data = false;
+
+                return Results.BadRequest(addNegocioModel);
             }
         }
 

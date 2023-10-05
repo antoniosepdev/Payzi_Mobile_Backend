@@ -7,7 +7,7 @@ public partial class Persona
 {
     public Guid Id { get; set; }
 
-    public string Rut { get; set; } = null!;
+    public string? Rut { get; set; }
 
     public int RutCuerpo { get; set; }
 
@@ -27,7 +27,7 @@ public partial class Persona
 
     public int SexoCodigo { get; set; }
 
-    public DateTime FechaNacimiento { get; set; }
+    public DateTime? FechaNacimiento { get; set; }
 
     public string? Direccion { get; set; }
 

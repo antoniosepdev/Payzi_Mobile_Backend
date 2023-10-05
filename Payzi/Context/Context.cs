@@ -236,16 +236,15 @@ public partial class Context : DbContext
             entity.Property(e => e.Rut)
                 .HasMaxLength(30)
                 .IsUnicode(false);
+            entity.Property(e => e.RutDigito)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .IsFixedLength();
 
             entity.HasOne(d => d.Dueno).WithMany(p => p.Negocios)
                 .HasForeignKey(d => d.DuenoId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Negocio_Persona");
-
-            entity.HasOne(d => d.IdNavigation).WithOne(p => p.Negocio)
-                .HasForeignKey<Negocio>(d => d.Id)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Negocio_Usuario");
 
             entity.HasOne(d => d.Comuna).WithMany(p => p.Negocios)
                 .HasForeignKey(d => new { d.ComunaCodigo, d.PaisCodigo, d.RegionCodigo, d.CiudadCodigo })
@@ -428,6 +427,11 @@ public partial class Context : DbContext
             entity.Property(e => e.FechaIntentoFallido).HasColumnType("date");
             entity.Property(e => e.UltimoAcceso).HasColumnType("date");
             entity.Property(e => e.UltimoCambioPassword).HasColumnType("date");
+
+            entity.HasOne(d => d.Negocio).WithMany(p => p.Usuarios)
+                .HasForeignKey(d => d.NegocioId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Usuario_Negocio");
 
             entity.HasOne(d => d.RolCodigoNavigation).WithMany(p => p.Usuarios)
                 .HasForeignKey(d => d.RolCodigo)
