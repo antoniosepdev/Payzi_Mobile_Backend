@@ -25,7 +25,7 @@ public partial class Persona
 
     public string? Email { get; set; }
 
-    public int? SexoCodigo { get; set; }
+    public int SexoCodigo { get; set; }
 
     public DateTime FechaNacimiento { get; set; }
 
@@ -48,4 +48,6 @@ public partial class Persona
     public virtual Comuna? Comuna { get; set; }
 
     public virtual ICollection<Negocio> Negocios { get; set; } = new List<Negocio>();
+
+    public virtual Sexo SexoCodigoNavigation { get; set; } = null!;
 }

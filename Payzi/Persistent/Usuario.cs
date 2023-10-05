@@ -32,5 +32,15 @@ namespace Payzi.Persistent
             usuario.UltimoCambioPassword = this.UltimoCambioPassword == default(DateTime) ? null : this.UltimoCambioPassword;
             usuario.FechaIntentoFallido = this.FechaIntentoFallido == default(DateTime) ? null : this.FechaIntentoFallido;
         }
+
+        public async Task Delete(Payzi.Context.Context context)
+        {
+            Payzi.Model.Usuario? usuario = await context.Usuarios.SingleOrDefaultAsync<Payzi.Model.Usuario>(x => x.Id == this.Id);
+
+            if (usuario != null)
+            {
+                context.Usuarios.Remove(usuario);
+            }
+        }
     }
 }

@@ -25,36 +25,38 @@ namespace Payzi.Mobile.Api.Controllers.PersonasControllers
 
             try
             {
-                //var db = dbConnection();
+                Payzi.Business.Persona persona = new Payzi.Business.Persona
+                {
+                    Id = Guid.NewGuid(),
+                    RutCuerpo = personaDTO.RutCuerpo,
+                    RutDigito = personaDTO.RutDigito.ToString(),
+                    Rut = personaDTO.RutCuerpo.ToString() + '-' + personaDTO.RutDigito.ToString(),
+                    NombrePrimario = personaDTO.NombrePrimario,
+                    NombreSecundario = personaDTO.NombreSecundario,
+                    ApellidoPaterno = personaDTO.ApellidoPaterno,
+                    ApellidoMaterno = personaDTO.ApellidoMaterno,
+                    NombreCompleto = string.IsNullOrEmpty(personaDTO.ApellidoMaterno) ?
+                  personaDTO.NombrePrimario + ' ' + personaDTO.NombreSecundario + ' ' + personaDTO.ApellidoPaterno :
+                  personaDTO.NombrePrimario + ' ' + personaDTO.NombreSecundario + ' ' + personaDTO.ApellidoPaterno + ' ' + personaDTO.ApellidoMaterno,
+                    Email = personaDTO.Email,
+                    SexoCodigo = personaDTO.SexoCodigo,
+                    FechaNacimiento = personaDTO.FechaNacimiento,
+                    Direccion = personaDTO.Direccion,
+                    Telefono = personaDTO.Telefono,
+                    Celular = personaDTO.Celular,
+                    Observaciones = personaDTO.Observaciones,
+                    PaisCodigo = personaDTO.PaisCodigo,
+                    RegionCodigo = personaDTO.RegionCodigo,
+                    CiudadCodigo = personaDTO.CiudadCodigo,
+                    ComunaCodigo = personaDTO.ComunaCodigo
+                };
 
-                var sql = @"INSERT INTO persona(Id, Rut, RutCuerpo, RutDigito, NombreCompleto, NombrePrimario, NombreSecundario, ApellidoPaterno, ApellidoMaterno, Email, SexoCodigo, FechaNacimiento, Direccion, Telefono, Celular, Observaciones, PaisCodigo, RegionCodigo, CiudadCodigo, ComunaCodigo)
-                            VALUES(@Id, @Rut, @RutCuerpo, @RutDigito, @NombreCompleto, @NombrePrimario, @NombreSecundario, @ApellidoPaterno, @ApellidoMaterno, @Email, @SexoCodigo, @FechaNacimiento, @Direccion, @Telefono, @Celular, @Observaciones, @PaisCodigo, @RegionCodigo, @CiudadCodigo, @ComunaCodigo) ";
+                await persona.Save(this._context);
+                await _context.SaveChangesAsync();
 
-
-                personaDTO.Id = Guid.NewGuid();
-                personaDTO.RutCuerpo = personaDTO.RutCuerpo;
-                personaDTO.RutDigito = personaDTO.RutDigito;
-                personaDTO.Rut = (personaDTO.RutCuerpo.ToString()) + "-" + (personaDTO.RutDigito.ToString());
-                personaDTO.NombrePrimario = personaDTO.NombrePrimario;
-                personaDTO.NombreSecundario = personaDTO.NombreSecundario;
-                personaDTO.ApellidoPaterno = personaDTO.ApellidoPaterno;
-                personaDTO.ApellidoMaterno = personaDTO.ApellidoMaterno;
-                personaDTO.NombreCompleto = personaDTO.NombrePrimario + " " + personaDTO.NombreSecundario + " " + personaDTO.ApellidoPaterno + " " + personaDTO.ApellidoMaterno;
-                personaDTO.Email = personaDTO.Email;
-                personaDTO.SexoCodigo = personaDTO.SexoCodigo;
-                personaDTO.FechaNacimiento = personaDTO.FechaNacimiento.Date;
-                personaDTO.Direccion = personaDTO.Direccion;
-                personaDTO.Telefono = personaDTO.Telefono;
-                personaDTO.Celular = personaDTO.Celular;
-                personaDTO.Observaciones = personaDTO.Observaciones;
-                personaDTO.PaisCodigo = personaDTO.PaisCodigo;
-                personaDTO.RegionCodigo = personaDTO.RegionCodigo;
-                personaDTO.CiudadCodigo = personaDTO.CiudadCodigo;
-                personaDTO.ComunaCodigo = personaDTO.ComunaCodigo;
-
-                //var result = await db.ExecuteAsync(sql, new { personaDTO.Id, personaDTO.Rut, personaDTO.RutCuerpo, personaDTO.RutDigito, personaDTO.NombreCompleto, personaDTO.NombrePrimario, personaDTO.NombreSecundario, personaDTO.ApellidoPaterno, personaDTO.ApellidoMaterno, personaDTO.Email, personaDTO.SexoCodigo, personaDTO.FechaNacimiento, personaDTO.Direccion, personaDTO.Telefono, personaDTO.Celular, personaDTO.Observaciones, personaDTO.PaisCodigo, personaDTO.RegionCodigo, personaDTO.CiudadCodigo, personaDTO.ComunaCodigo });
                 personaModel.Success = true;
-                personaModel.Data = personaDTO;
+                personaModel.Code = StatusCodes.Status200OK;
+                personaModel.Data = true;
 
                 return Results.Ok(personaModel);
             }

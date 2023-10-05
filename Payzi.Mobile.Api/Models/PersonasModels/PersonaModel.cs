@@ -4,7 +4,16 @@ using Payzi.Mobile.Api.DTO.UsuariosDTO;
 
 namespace Payzi.Mobile.Api.Models.PersonasModels
 {
-    public class PersonaModel : GenericBaseModel<PersonaDTO>
+    public class PersonaModel : GenericBaseModel<bool>
     {
     }
+
+    public class AddPersonaModel : GenericBaseModel<bool>
+    {
+    }
+
+    public class UpdatePersonaModel : GenericBaseModel<bool>
+    {
+    }
+
 }

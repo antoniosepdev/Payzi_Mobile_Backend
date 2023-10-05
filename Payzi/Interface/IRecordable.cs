@@ -9,5 +9,7 @@ namespace Payzi.Interface
     public interface IRecordable
     {
         public Task Save(Payzi.Context.Context context);
+
+        public Task Delete(Payzi.Context.Context context);
     }
 }

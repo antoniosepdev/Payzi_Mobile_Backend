@@ -7,10 +7,6 @@ namespace Payzi.Context;
 
 public partial class Context : DbContext
 {
-    public Context()
-    {
-    }
-
     public Context(DbContextOptions<Context> options)
         : base(options)
     {
@@ -46,6 +42,8 @@ public partial class Context : DbContext
 
     public virtual DbSet<Rol> Rols { get; set; }
 
+    public virtual DbSet<Sexo> Sexos { get; set; }
+
     public virtual DbSet<Transaccion> Transaccions { get; set; }
 
     public virtual DbSet<TransaccionSalidum> TransaccionSalida { get; set; }
@@ -53,10 +51,6 @@ public partial class Context : DbContext
     public virtual DbSet<Usuario> Usuarios { get; set; }
 
     public virtual DbSet<Voucher> Vouchers { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-KAKCCGH; Initial Catalog=Payzi; Connection Timeout=30;Integrated Security=true;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -92,6 +86,7 @@ public partial class Context : DbContext
 
             entity.ToTable("Ciudad");
 
+            entity.Property(e => e.Codigo).ValueGeneratedOnAdd();
             entity.Property(e => e.Nombre)
                 .HasMaxLength(50)
                 .IsUnicode(false);
@@ -108,6 +103,7 @@ public partial class Context : DbContext
 
             entity.ToTable("Comuna");
 
+            entity.Property(e => e.Codigo).ValueGeneratedOnAdd();
             entity.Property(e => e.Nombre)
                 .HasMaxLength(50)
                 .IsUnicode(false);
@@ -260,7 +256,6 @@ public partial class Context : DbContext
         {
             entity.HasKey(e => e.Codigo);
 
-            entity.Property(e => e.Codigo).ValueGeneratedNever();
             entity.Property(e => e.Nombre)
                 .HasMaxLength(50)
                 .IsUnicode(false);
@@ -300,6 +295,11 @@ public partial class Context : DbContext
                 .IsUnicode(false)
                 .IsFixedLength();
 
+            entity.HasOne(d => d.SexoCodigoNavigation).WithMany(p => p.Personas)
+                .HasForeignKey(d => d.SexoCodigo)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Persona_Sexo");
+
             entity.HasOne(d => d.Comuna).WithMany(p => p.Personas)
                 .HasForeignKey(d => new { d.ComunaCodigo, d.PaisCodigo, d.RegionCodigo, d.CiudadCodigo })
                 .HasConstraintName("FK_Persona_Comuna");
@@ -311,9 +311,13 @@ public partial class Context : DbContext
 
             entity.ToTable("Region");
 
+            entity.Property(e => e.Codigo).ValueGeneratedOnAdd();
             entity.Property(e => e.Nombre)
-                .HasMaxLength(10)
-                .IsFixedLength();
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.NombreOficial)
+                .HasMaxLength(50)
+                .IsUnicode(false);
 
             entity.HasOne(d => d.PaisCodigoNavigation).WithMany(p => p.Regions)
                 .HasForeignKey(d => d.PaisCodigo)
@@ -339,6 +343,17 @@ public partial class Context : DbContext
                 .HasForeignKey(d => d.MenuId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Rol_Menu");
+        });
+
+        modelBuilder.Entity<Sexo>(entity =>
+        {
+            entity.HasKey(e => e.Codigo);
+
+            entity.ToTable("Sexo");
+
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(50)
+                .IsUnicode(false);
         });
 
         modelBuilder.Entity<Transaccion>(entity =>
