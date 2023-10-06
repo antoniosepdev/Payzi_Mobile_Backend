@@ -17,9 +17,9 @@ public partial class ExtraDatum
 
     public string? SourceVersion { get; set; }
 
-    public Guid? CustomFieldsId { get; set; }
+    public Guid? CustomFields { get; set; }
 
-    public virtual CustomField? CustomFields { get; set; }
+    public virtual CustomField? CustomFieldsNavigation { get; set; }
 
     public virtual ICollection<TransaccionSalidum> TransaccionSalida { get; set; } = new List<TransaccionSalidum>();
 

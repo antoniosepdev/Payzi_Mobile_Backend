@@ -10,6 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 string? connectionStrings = builder.Configuration.GetConnectionString("Payzi");
 
+string? secret = builder.Configuration.GetValue<string>("Secret");
+
+Payzi.Abstraction.StaticParams.StaticParams.Secret = secret;
+
 builder.Services.AddSingleton(connectionStrings);
 
 builder.Services.RegisterServices(builder.Configuration);

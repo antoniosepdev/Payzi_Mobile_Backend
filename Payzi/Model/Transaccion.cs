@@ -25,13 +25,11 @@ public partial class Transaccion
 
     public long VoucherId { get; set; }
 
-    public int AccionCodigo { get; set; }
-
-    public virtual Accion AccionCodigoNavigation { get; set; } = null!;
-
     public virtual ExtraDatum ExtraDataNavigation { get; set; } = null!;
 
     public virtual FormaPago MethodNavigation { get; set; } = null!;
+
+    public virtual ICollection<Pago> Pagos { get; set; } = new List<Pago>();
 
     public virtual Voucher Voucher { get; set; } = null!;
 }

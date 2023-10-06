@@ -12,7 +12,7 @@ namespace Payzi.Persistent
     {
         public async Task Save(Payzi.Context.Context context)
         {
-            Payzi.Model.Usuario? usuario = await context.Usuarios.SingleOrDefaultAsync<Payzi.Model.Usuario>(x => x.Id == this.Id);
+            Payzi.Model.Usuario? usuario = context.Usuarios.SingleOrDefault<Payzi.Model.Usuario>(x => x.Id == this.Id);
 
             if (usuario == null)
             {
@@ -24,6 +24,7 @@ namespace Payzi.Persistent
                 await context.Usuarios.AddAsync(usuario);
             }
 
+            usuario.Email = this.Email;
             usuario.Clave = this.Clave;
             usuario.Aprobado = this.Aprobado;
             usuario.Bloqueado = this.Bloqueado;
@@ -31,6 +32,7 @@ namespace Payzi.Persistent
             usuario.UltimoAcceso = this.UltimoAcceso == default(DateTime) ? null : this.UltimoAcceso;
             usuario.UltimoCambioPassword = this.UltimoCambioPassword == default(DateTime) ? null : this.UltimoCambioPassword;
             usuario.FechaIntentoFallido = this.FechaIntentoFallido == default(DateTime) ? null : this.FechaIntentoFallido;
+            usuario.RolCodigo = this.RolCodigo;
             usuario.NegocioId = this.NegocioId;
         }
 

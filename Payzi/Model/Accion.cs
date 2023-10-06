@@ -11,7 +11,9 @@ public partial class Accion
 
     public Guid MenuItemId { get; set; }
 
+    public Guid? ReferenciaId { get; set; }
+
     public virtual MenuItem MenuItem { get; set; } = null!;
 
-    public virtual ICollection<Transaccion> Transaccions { get; set; } = new List<Transaccion>();
+    public virtual Pago? Referencia { get; set; }
 }

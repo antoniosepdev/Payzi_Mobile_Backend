@@ -34,6 +34,8 @@ public partial class Context : DbContext
 
     public virtual DbSet<Negocio> Negocios { get; set; }
 
+    public virtual DbSet<Pago> Pagos { get; set; }
+
     public virtual DbSet<Pai> Pais { get; set; }
 
     public virtual DbSet<Persona> Personas { get; set; }
@@ -69,6 +71,10 @@ public partial class Context : DbContext
                 .HasForeignKey(d => d.MenuItemId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Accion_MenuItem");
+
+            entity.HasOne(d => d.Referencia).WithMany(p => p.Accions)
+                .HasForeignKey(d => d.ReferenciaId)
+                .HasConstraintName("FK_Accion_Pago");
         });
 
         modelBuilder.Entity<Boletum>(entity =>
@@ -159,6 +165,7 @@ public partial class Context : DbContext
             entity.ToTable("ExtraData", "Tesoreria");
 
             entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.CustomFields).HasColumnName("customFields");
             entity.Property(e => e.ExemptAmount).HasColumnName("exemptAmount");
             entity.Property(e => e.NetAmount).HasColumnName("netAmount");
             entity.Property(e => e.SourceName)
@@ -174,8 +181,8 @@ public partial class Context : DbContext
                 .IsUnicode(false)
                 .HasColumnName("taxIdnValidation");
 
-            entity.HasOne(d => d.CustomFields).WithMany(p => p.ExtraData)
-                .HasForeignKey(d => d.CustomFieldsId)
+            entity.HasOne(d => d.CustomFieldsNavigation).WithMany(p => p.ExtraData)
+                .HasForeignKey(d => d.CustomFields)
                 .HasConstraintName("FK_TransaccionDetalles_CustomFields");
         });
 
@@ -249,6 +256,18 @@ public partial class Context : DbContext
             entity.HasOne(d => d.Comuna).WithMany(p => p.Negocios)
                 .HasForeignKey(d => new { d.ComunaCodigo, d.PaisCodigo, d.RegionCodigo, d.CiudadCodigo })
                 .HasConstraintName("FK_Negocio_Comuna");
+        });
+
+        modelBuilder.Entity<Pago>(entity =>
+        {
+            entity.ToTable("Pago", "Tesoreria");
+
+            entity.Property(e => e.Id).ValueGeneratedNever();
+
+            entity.HasOne(d => d.Transferencia).WithMany(p => p.Pagos)
+                .HasForeignKey(d => d.TransferenciaId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Pago_Transaccion");
         });
 
         modelBuilder.Entity<Pai>(entity =>
@@ -326,17 +345,15 @@ public partial class Context : DbContext
 
         modelBuilder.Entity<Rol>(entity =>
         {
-            entity.HasKey(e => e.Codigo);
+            entity.HasKey(e => e.Codigo).HasName("PK__Rol__3214EC27423D7619");
 
-            entity.ToTable("Rol");
+            entity.ToTable("Rol", "Membresia");
 
             entity.Property(e => e.Codigo).ValueGeneratedNever();
             entity.Property(e => e.Clave)
                 .HasMaxLength(50)
                 .IsUnicode(false);
-            entity.Property(e => e.Nombre)
-                .HasMaxLength(50)
-                .IsUnicode(false);
+            entity.Property(e => e.Nombre).HasMaxLength(50);
 
             entity.HasOne(d => d.Menu).WithMany(p => p.Rols)
                 .HasForeignKey(d => d.MenuId)
@@ -372,11 +389,6 @@ public partial class Context : DbContext
             entity.Property(e => e.Method).HasColumnName("method");
             entity.Property(e => e.PrintVoucherOnApp).HasColumnName("printVoucherOnApp");
             entity.Property(e => e.Tip).HasColumnName("tip");
-
-            entity.HasOne(d => d.AccionCodigoNavigation).WithMany(p => p.Transaccions)
-                .HasForeignKey(d => d.AccionCodigo)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Transaccion_Accion");
 
             entity.HasOne(d => d.ExtraDataNavigation).WithMany(p => p.Transaccions)
                 .HasForeignKey(d => d.ExtraData)

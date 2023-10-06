@@ -12,7 +12,7 @@ namespace Payzi.Business
     {
         public static async Task<Usuario> GetAsync(Payzi.Context.Context context, string email)
         {
-            Payzi.Model.Usuario? user = await Query.GetUsuarios(context).Include("IdNavigation").Include("RolCodigoNavigation").SingleOrDefaultAsync<Payzi.Model.Usuario>(x => x.Email == email);
+            Payzi.Model.Usuario? user = await Query.GetUsuarios(context).SingleOrDefaultAsync<Payzi.Model.Usuario>(x => x.Email == email);
 
             Payzi.Business.Usuario usuario = user.SingleOrDefault<Payzi.Business.Usuario>();
 

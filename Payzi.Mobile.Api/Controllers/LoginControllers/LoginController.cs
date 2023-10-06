@@ -25,7 +25,7 @@ namespace Payzi.Mobile.Api.Controllers.LoginControllers
                 Payzi.MySQL.Model.Business.Account.LoginParametros loginParametros = new Payzi.MySQL.Model.Business.Account.LoginParametros
                 {
                     Email = loginDTO.Email,
-                    Password = loginDTO.Password,
+                    Password = loginDTO.Clave,
                     Persistent = false,
                     Context = this._context 
                 };
@@ -78,7 +78,6 @@ namespace Payzi.Mobile.Api.Controllers.LoginControllers
                             login.Status = "OK";
                             login.SubStatus = "OK";
                             login.Token = token;
-                            //login.ReCaptchaResult = isRecaptchaValid;
 
                             return Results.Ok(login);
                         }

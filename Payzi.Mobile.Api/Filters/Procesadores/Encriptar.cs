@@ -22,29 +22,22 @@ namespace Payzi.Mobile.Api.Filters.Procesadores
 
         #region Procesador
 
-        internal static string EncryptPassword(string unencodePassword)
+        public static string EncryptPassword(string unencodePassword)
         {
-            string saltValue = GenerateRandomSalt();
+            String password = "DRKHIEDICM7ZZJE0UNV3RUEBZUOXWDHEVKC920KN9ULWGPORHN7M4IU6EH14GQG8 XZT5ORPBLL11SPIFNYO7SSRYRNNKNWTFX3ZWUUVY16DLVLJAM2CK2PO05SJC0ZH0";
+            String hashAlgorithm = "MD5";
+            String saltValue = "DRKHIEDICM7ZZJE0UNV3RUEBZUOXWDHEVKC920KN9ULWGPORHN7M4IU6EH14GQG8 XZT5ORPBLL11SPIFNYO7SSRYRNNKNWTFX3ZWUUVY16DLVLJAM2CK2PO05SJC0ZH0";
+            Int32 keySize = 192;
+            Int32 passwordIteration = 1;
+            String initialVector = ("DRKHIEDICM7ZZJE0UNV3RUEBZUOXWDHEVKC920KN9ULWGPORHN7M4IU6EH14GQG8 XZT5ORPBLL11SPIFNYO7SSRYRNNKNWTFX3ZWUUVY16DLVLJAM2CK2PO05SJC0ZH0").Remove(16);
 
-            string password = saltValue;
-
-            string hashAlgorithm = "MD5";
-
-            int keySize = 192;
-
-            int passwordIteration = 1;
-
-            string initialVector = saltValue.Remove(16);
-
-            byte[] InitialVectorBytes = Encoding.ASCII.GetBytes(initialVector);
-
-            byte[] saltValueBytes = Encoding.ASCII.GetBytes(saltValue);
-
-            byte[] plainTextBytes = Encoding.UTF8.GetBytes(unencodePassword);
+            Byte[] InitialVectorBytes = Encoding.ASCII.GetBytes(initialVector);
+            Byte[] saltValueBytes = Encoding.ASCII.GetBytes(saltValue);
+            Byte[] plainTextBytes = Encoding.UTF8.GetBytes(unencodePassword);
 
             PasswordDeriveBytes passwordBytes = new PasswordDeriveBytes(password, saltValueBytes, hashAlgorithm, passwordIteration);
 
-            byte[] keyBytes = passwordBytes.GetBytes(keySize / 8);
+            Byte[] keyBytes = passwordBytes.GetBytes(keySize / 8);
 
             RijndaelManaged symmetricKey = new RijndaelManaged();
 
@@ -59,31 +52,31 @@ namespace Payzi.Mobile.Api.Filters.Procesadores
             cryptoStream.Write(plainTextBytes, 0, plainTextBytes.Length);
             cryptoStream.FlushFinalBlock();
 
-            byte[] cipherTextBytes = memoryStream.ToArray();
+            Byte[] cipherTextBytes = memoryStream.ToArray();
 
             memoryStream.Close();
             cryptoStream.Close();
 
-            string encodePassword = Convert.ToBase64String(cipherTextBytes);
+            String encodePassword = System.Convert.ToBase64String(cipherTextBytes);
 
             return encodePassword;
         }
 
         public static string DecodePassword(string encodePassword)
         {
-            string password = encodePassword;
-            string hashAlgorithm = "MD5";
-            string saltValue = encodePassword;
-            int keySize = 192;
-            int passwordIteration = 1;
-            string initialVector = encodePassword.Remove(16);
-            byte[] InitialVectorBytes = Encoding.ASCII.GetBytes(initialVector);
-            byte[] saltValueBytes = Encoding.ASCII.GetBytes(saltValue);
-            byte[] cipherTextBytes = Convert.FromBase64String(encodePassword);
+            String password = "DRKHIEDICM7ZZJE0UNV3RUEBZUOXWDHEVKC920KN9ULWGPORHN7M4IU6EH14GQG8 XZT5ORPBLL11SPIFNYO7SSRYRNNKNWTFX3ZWUUVY16DLVLJAM2CK2PO05SJC0ZH0";
+            String hashAlgorithm = "MD5";
+            String saltValue = "DRKHIEDICM7ZZJE0UNV3RUEBZUOXWDHEVKC920KN9ULWGPORHN7M4IU6EH14GQG8 XZT5ORPBLL11SPIFNYO7SSRYRNNKNWTFX3ZWUUVY16DLVLJAM2CK2PO05SJC0ZH0";
+            Int32 keySize = 192;
+            Int32 passwordIteration = 1;
+            String initialVector = ("DRKHIEDICM7ZZJE0UNV3RUEBZUOXWDHEVKC920KN9ULWGPORHN7M4IU6EH14GQG8 XZT5ORPBLL11SPIFNYO7SSRYRNNKNWTFX3ZWUUVY16DLVLJAM2CK2PO05SJC0ZH0").Remove(16);
+            Byte[] InitialVectorBytes = Encoding.ASCII.GetBytes(initialVector);
+            Byte[] saltValueBytes = Encoding.ASCII.GetBytes(saltValue);
+            Byte[] cipherTextBytes = System.Convert.FromBase64String(encodePassword);
 
             PasswordDeriveBytes passwordBytes = new PasswordDeriveBytes(password, saltValueBytes, hashAlgorithm, passwordIteration);
 
-            byte[] keyBytes = passwordBytes.GetBytes(keySize / 8);
+            Byte[] keyBytes = passwordBytes.GetBytes(keySize / 8);
 
             RijndaelManaged symmetricKey = new RijndaelManaged();
 
@@ -93,13 +86,13 @@ namespace Payzi.Mobile.Api.Filters.Procesadores
             MemoryStream memoryStream = new MemoryStream(cipherTextBytes);
             CryptoStream cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read);
 
-            byte[] plainTextBytes = new byte[cipherTextBytes.Length];
+            Byte[] plainTextBytes = new Byte[cipherTextBytes.Length];
 
-            int decryptedByteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length);
+            Int32 decryptedByteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length);
 
             memoryStream.Close(); cryptoStream.Close();
 
-            string plainText = Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount);
+            String plainText = Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount);
 
             return plainText;
         }
