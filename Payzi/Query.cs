@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualBasic.FileIO;
+using Payzi.Business;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,39 @@ namespace Payzi
                 from accion in context.Accions
                 select accion;
         }
+
+        #endregion
+
+        #region CustomField
+
+        public static IQueryable<Payzi.Model.CustomField> GetCustomFields(Payzi.Context.Context context)
+        {
+            return
+                from customField in context.CustomFields
+                select customField;
+        }
+
+        #endregion
+
+        #region ExtraData
+
+        public static IQueryable<Payzi.Model.ExtraDatum> GetExtraData(Payzi.Context.Context context)
+        {
+            return 
+                from extraData in context.ExtraData 
+                select extraData;
+        }
+
+        #region FormaPago
+
+        public static IQueryable<Payzi.Model.FormaPago> GetFormaPagos(Payzi.Context.Context context)
+        {
+            return
+                from FormaPago in context.FormaPagos
+                select FormaPago;
+        }
+
+        #endregion
 
         #endregion
 
@@ -116,11 +150,45 @@ namespace Payzi
         }
         #endregion
 
+        #region TransaccionSalida
+
+        public static IQueryable<Payzi.Model.TransaccionSalidum> GetTransaccionesSalida(Payzi.Context.Context context)
+        {
+            return
+                from transaccionSalida in context.TransaccionSalida
+                select transaccionSalida;
+        }
+
+        #endregion
+
+        #region Transaccion
+
+        public static IQueryable<Payzi.Model.Transaccion> GetTransacciones(Payzi.Context.Context context)
+        {
+            return
+                from transaccion in context.Transaccions
+                select transaccion;
+        }
+
+
+        #endregion
+
         #region Usuario
 
         public static IQueryable<Payzi.Model.Usuario> GetUsuarios(Payzi.Context.Context context)
         {
             return from usuario in context.Usuarios select usuario;
+        }
+
+        #endregion
+
+        #region Voucher
+
+        public static IQueryable<Payzi.Model.Voucher> GetVoucher(Payzi.Context.Context context)
+        {
+            return
+                from voucher in context.Vouchers
+                select voucher;
         }
 
         #endregion
