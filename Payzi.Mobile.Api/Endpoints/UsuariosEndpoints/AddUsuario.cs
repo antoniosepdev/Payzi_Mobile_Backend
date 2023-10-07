@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Payzi.Mobile.Api.Controllers.UsuariosControllers;
 using Payzi.Mobile.Api.DTO.UsuariosDTO;
-
+using Payzi.Mobile.Api.Models.UsuariosModels;
 
 namespace Payzi.Mobile.Api.Endpoints.UsuariosEndpoints
 {
@@ -16,9 +16,9 @@ namespace Payzi.Mobile.Api.Endpoints.UsuariosEndpoints
 
                 return await usuarioController.AddUser(usuarioDTO);
 
-            }).Produces<UsuarioDTO>(StatusCodes.Status200OK)
-              .Produces<UsuarioDTO>(StatusCodes.Status400BadRequest)
-              .Produces<UsuarioDTO>(StatusCodes.Status401Unauthorized);
+            }).Produces<AddUsuarioModel>(StatusCodes.Status200OK)
+              .Produces<AddUsuarioModel>(StatusCodes.Status400BadRequest)
+              .Produces<AddUsuarioModel>(StatusCodes.Status401Unauthorized);
 
             return endpoints;
         }
