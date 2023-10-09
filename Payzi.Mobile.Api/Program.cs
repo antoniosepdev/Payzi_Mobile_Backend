@@ -1,11 +1,17 @@
+using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Payzi.Mobile.Api.Startup.FluentValidation;
 using Payzi.Mobile.Api.Startup.IEndpoint;
 using Payzi.Mobile.Api.Startup.Swagger;
- 
+using Microsoft.AspNetCore.Authentication;
+
+
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
+
+TypeAdapterConfig.GlobalSettings.Default.PreserveReference(true);
 
 // Add services to the container.
 string? connectionStrings = builder.Configuration.GetConnectionString("Payzi");
@@ -31,6 +37,12 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
     options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
 });
+
+(Action<AuthenticationOptions> authenticationOptions, Action<JwtBearerOptions> jwtBearerOptions) = Payzi.Abstraction.Security.Security.AddAuthentication(secret);
+
+builder.Services.AddAuthorization()
+                .AddAuthentication(authenticationOptions)
+                .AddJwtBearer(jwtBearerOptions);
 
 
 builder.Services.AddDbContext<Payzi.Context.Context>(x => x.UseSqlServer(connectionStrings, x => x.EnableRetryOnFailure()));

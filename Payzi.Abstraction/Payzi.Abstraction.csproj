@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Classes\" />
-    <Folder Include="Security\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +15,7 @@
     <PackageReference Include="Mapster" Version="7.4.0" />
     <PackageReference Include="Mapster.DependencyInjection" Version="1.0.1" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.22" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "iAEd2mLxaiox69JkPPIq7HleQPm4mrCvJ3ttkvJVovjfaTL1+gjYytU0s2we2iUqSIZDsfqsc8nkTGUJ1z5yJA==",
+  "dgSpecHash": "/kToFtoi0lTBPsKA4W05HuIqE2THHLrfo3zNj9hq7yBdom/EC292A2p6eE4f/HfYqCf0Q+NTSWReXHrxkpFHLw==",
   "success": true,
   "projectFilePath": "C:\\Users\\suffe\\Documents\\Github\\Repositorios Antonio Sepulveda\\Payzi\\Payzi_Mobile_Backend\\Payzi\\Payzi.csproj",
   "expectedPackageFiles": [
@@ -17,6 +17,7 @@
     "C:\\Users\\suffe\\.nuget\\packages\\microsoft.aspnetcore\\2.2.0\\microsoft.aspnetcore.2.2.0.nupkg.sha512",
     "C:\\Users\\suffe\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\suffe\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
+    "C:\\Users\\suffe\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.22\\microsoft.aspnetcore.authentication.jwtbearer.6.0.22.nupkg.sha512",
     "C:\\Users\\suffe\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\2.2.0\\microsoft.aspnetcore.connections.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\suffe\\.nuget\\packages\\microsoft.aspnetcore.diagnostics\\2.2.0\\microsoft.aspnetcore.diagnostics.2.2.0.nupkg.sha512",
     "C:\\Users\\suffe\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.abstractions\\2.2.0\\microsoft.aspnetcore.diagnostics.abstractions.2.2.0.nupkg.sha512",
