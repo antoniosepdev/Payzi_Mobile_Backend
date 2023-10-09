@@ -11,7 +11,7 @@ namespace Payzi.Mobile.Api.Endpoints.PersonasEndpoints
     {
         public IEndpointRouteBuilder AddRoutes(IEndpointRouteBuilder endpoints)
         {
-            endpoints.MapPost("/Persona/Add", [AllowAnonymous] async (HttpContext httpContext, Payzi.Context.Context context, [FromBody] PersonaDTO personaDTO) =>
+            endpoints.MapPost("/Persona/Add", [Authorize] async (HttpContext httpContext, Payzi.Context.Context context, [FromBody] PersonaDTO personaDTO) =>
             {
                 PersonaController personaController = new PersonaController(httpContext, context);
 

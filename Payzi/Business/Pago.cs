@@ -10,9 +10,9 @@ namespace Payzi.Business
 {
     public class Pago : Payzi.Persistent.Pago
     {
-        public static async Task<Pago> GetAsync(Payzi.Context.Context context, Guid id)
+        public static async Task<Pago> GetAsync(Payzi.Context.Context context, Guid idPago)
         {
-            Payzi.Model.Pago query = await Query.GetPagos(context).SingleOrDefaultAsync<Payzi.Model.Pago>(x => x.Id == id);
+            Payzi.Model.Pago query = await Query.GetPagos(context).Include("Usuario").Include("IdTransaccionNavigation").SingleOrDefaultAsync<Payzi.Model.Pago>(x => x.IdPago == idPago);
 
             Pago pago = query.SingleOrDefault<Pago>();
 

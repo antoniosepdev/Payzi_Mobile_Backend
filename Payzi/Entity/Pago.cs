@@ -23,7 +23,7 @@ namespace Payzi.Entity
 
             Payzi.Model.Pago primaryObject = other.Adapt<Payzi.Model.Pago>();
 
-            return primaryObject.Id.Equals(this.Id);
+            return primaryObject.IdPago.Equals(this.IdPago);
         }
     }
 }

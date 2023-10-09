@@ -20,6 +20,6 @@
 
         public Guid UsuarioId { get; set; } = Guid.Empty;
 
-        public byte Estado { get; set; }
+        public bool Estado { get; set; }
     }
 }

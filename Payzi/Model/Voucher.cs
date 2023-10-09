@@ -23,7 +23,7 @@ public partial class Voucher
 
     public Guid UsuarioId { get; set; }
 
-    public byte Estado { get; set; }
+    public bool Estado { get; set; }
 
     public virtual FormaPago MetodoPagoCodigoNavigation { get; set; } = null!;
 

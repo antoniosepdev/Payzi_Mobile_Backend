@@ -250,9 +250,11 @@ public partial class Context : DbContext
 
         modelBuilder.Entity<Pago>(entity =>
         {
+            entity.HasKey(e => e.IdPago);
+
             entity.ToTable("Pago", "Tesoreria");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.IdPago).ValueGeneratedNever();
             entity.Property(e => e.IdTransaccion).HasColumnName("idTransaccion");
 
             entity.HasOne(d => d.IdTransaccionNavigation).WithMany(p => p.Pagos)
@@ -260,8 +262,8 @@ public partial class Context : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Pago_Transaccion");
 
-            entity.HasOne(d => d.Usuario).WithMany(p => p.Pagos)
-                .HasForeignKey(d => d.UsuarioId)
+            entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Pagos)
+                .HasForeignKey(d => d.IdUsuario)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Pago_Usuario");
         });

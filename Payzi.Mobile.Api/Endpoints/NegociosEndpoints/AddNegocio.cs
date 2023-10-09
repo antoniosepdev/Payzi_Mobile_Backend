@@ -10,7 +10,7 @@ namespace Payzi.Mobile.Api.Endpoints.PersonasEndpoints
     {
         public IEndpointRouteBuilder AddRoutes(IEndpointRouteBuilder endpoints)
         {
-            endpoints.MapPost("/Negocio/Add", [AllowAnonymous] async (HttpContext httpContext, Payzi.Context.Context context, [FromBody] NegocioDTO negocioDTO) =>
+            endpoints.MapPost("/Negocio/Add", [Authorize] async (HttpContext httpContext, Payzi.Context.Context context, [FromBody] NegocioDTO negocioDTO) =>
             {
                 NegocioController negocioController = new NegocioController(httpContext, context);
 

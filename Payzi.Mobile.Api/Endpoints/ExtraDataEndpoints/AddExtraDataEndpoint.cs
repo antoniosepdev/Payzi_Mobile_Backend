@@ -12,7 +12,7 @@ namespace Payzi.Mobile.Api.Endpoints.ExtraDataEndpoints
     {
         public IEndpointRouteBuilder AddRoutes(IEndpointRouteBuilder endpoints)
         {
-            endpoints.MapPost("/ExtraData/Add", [AllowAnonymous] async (HttpContext httpContext, Payzi.Context.Context context, [FromBody] ExtraDataDTO extraDataDTO) =>
+            endpoints.MapPost("/ExtraData/Add", [Authorize] async (HttpContext httpContext, Payzi.Context.Context context, [FromBody] ExtraDataDTO extraDataDTO) =>
             {
                 ExtraDataController extraDataController = new ExtraDataController(httpContext, context);
 

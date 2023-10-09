@@ -8,9 +8,9 @@
 
         public int RutCuerpo { get; set; }
 
-        public char RutDigito { get; set; }
+        public string RutDigito { get; set; } = string.Empty;
 
-        public string NombreCompleto { get; set; } // = string.Empty;
+        public string NombreCompleto { get; set; } = string.Empty;
 
         public string NombrePrimario { get; set; } = string.Empty;
 

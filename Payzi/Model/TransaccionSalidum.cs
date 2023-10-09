@@ -7,11 +7,11 @@ public partial class TransaccionSalidum
 {
     public Guid Id { get; set; }
 
-    public byte TransactionStatus { get; set; }
+    public bool TransactionStatus { get; set; }
 
     public string SequenceNumber { get; set; } = null!;
 
-    public byte PrinterVoucherCommerce { get; set; }
+    public bool PrinterVoucherCommerce { get; set; }
 
     public Guid ExtraData { get; set; }
 

@@ -10,7 +10,7 @@ namespace Payzi.Mobile.Api.Endpoints.UsuariosEndpoints
     {
         public IEndpointRouteBuilder AddRoutes(IEndpointRouteBuilder endpoints)
         {
-            endpoints.MapPost("/Usuario/Add", [AllowAnonymous] async (HttpContext httpContext, Payzi.Context.Context context, [FromBody] UsuarioDTO usuarioDTO) =>
+            endpoints.MapPost("/Usuario/Add", [Authorize] async (HttpContext httpContext, Payzi.Context.Context context, [FromBody] UsuarioDTO usuarioDTO) =>
             {
                 UsuarioController usuarioController = new UsuarioController(httpContext, context);
 

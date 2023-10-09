@@ -4,11 +4,11 @@
     {
         public Guid Id { get; set; } = Guid.Empty;
 
-        public byte TransactionStatus { get; set; }
+        public bool TransactionStatus { get; set; }
 
         public string SequenceNumber { get; set; } = string.Empty;
 
-        public byte PrinterVoucherCommerce { get; set; }
+        public bool PrinterVoucherCommerce { get; set; }
 
         public Guid ExtraData {  get; set; }
 

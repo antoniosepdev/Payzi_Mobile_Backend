@@ -2,10 +2,10 @@
 {
     public class PagosDTO
     {
-        public Guid Id { get; set; } = Guid.Empty;
+        public Guid IdPago { get; set; } = Guid.Empty;
 
         public Guid IdTransaccion { get; set; } = Guid.Empty;
 
-        public Guid UsuarioId { get; set; } = Guid.Empty;
+        public Guid IdUsuario { get; set; } = Guid.Empty;
     }
 }
