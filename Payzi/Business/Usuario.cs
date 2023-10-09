@@ -10,9 +10,21 @@ namespace Payzi.Business
 {
     public class Usuario : Payzi.Persistent.Usuario
     {
+
+        public static Usuario Get(Payzi.Context.Context context, string email)
+        {
+            Payzi.Model.Usuario? user = Query.GetUsuarios(context)
+                                                         .Include("Negocio")
+                                                         .SingleOrDefault<Payzi.Model.Usuario>(x => x.Email == email);
+
+            Usuario usuario = user.SingleOrDefault<Usuario>();
+
+            return usuario;
+        }
+
         public static async Task<Usuario> GetAsync(Payzi.Context.Context context, string email)
         {
-            Payzi.Model.Usuario? user = await Query.GetUsuarios(context).SingleOrDefaultAsync<Payzi.Model.Usuario>(x => x.Email == email);
+            Payzi.Model.Usuario? user = await Query.GetUsuarios(context).Include("Negocio").Include("RolCodigoNavigation").SingleOrDefaultAsync<Payzi.Model.Usuario>(x => x.Email == email);
 
             Payzi.Business.Usuario usuario = user.SingleOrDefault<Payzi.Business.Usuario>();
 

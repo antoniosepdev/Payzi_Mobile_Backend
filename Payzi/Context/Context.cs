@@ -67,14 +67,9 @@ public partial class Context : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false);
 
-            entity.HasOne(d => d.MenuItem).WithMany(p => p.Accions)
-                .HasForeignKey(d => d.MenuItemId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Accion_MenuItem");
-
             entity.HasOne(d => d.Referencia).WithMany(p => p.Accions)
                 .HasForeignKey(d => d.ReferenciaId)
-                .HasConstraintName("FK_Accion_Pago");
+                .HasConstraintName("FK_Accion_MenuItem");
         });
 
         modelBuilder.Entity<Boletum>(entity =>
@@ -147,16 +142,15 @@ public partial class Context : DbContext
             entity.ToTable("Error");
 
             entity.Property(e => e.ErrorCode)
-                .ValueGeneratedNever()
+                .HasMaxLength(5)
+                .IsUnicode(false)
                 .HasColumnName("errorCode");
             entity.Property(e => e.ErrorCodeOnApp).HasColumnName("errorCodeOnApp");
             entity.Property(e => e.ErrorMessage)
-                .HasMaxLength(100)
-                .IsUnicode(false)
+                .HasColumnType("text")
                 .HasColumnName("errorMessage");
             entity.Property(e => e.ErrorMessageOnApp)
-                .HasMaxLength(100)
-                .IsUnicode(false)
+                .HasColumnType("text")
                 .HasColumnName("errorMessageOnApp");
         });
 
@@ -252,10 +246,6 @@ public partial class Context : DbContext
                 .HasForeignKey(d => d.DuenoId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Negocio_Persona");
-
-            entity.HasOne(d => d.Comuna).WithMany(p => p.Negocios)
-                .HasForeignKey(d => new { d.ComunaCodigo, d.PaisCodigo, d.RegionCodigo, d.CiudadCodigo })
-                .HasConstraintName("FK_Negocio_Comuna");
         });
 
         modelBuilder.Entity<Pago>(entity =>
@@ -263,11 +253,17 @@ public partial class Context : DbContext
             entity.ToTable("Pago", "Tesoreria");
 
             entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.IdTransaccion).HasColumnName("idTransaccion");
 
-            entity.HasOne(d => d.Transferencia).WithMany(p => p.Pagos)
-                .HasForeignKey(d => d.TransferenciaId)
+            entity.HasOne(d => d.IdTransaccionNavigation).WithMany(p => p.Pagos)
+                .HasForeignKey(d => d.IdTransaccion)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Pago_Transaccion");
+
+            entity.HasOne(d => d.Usuario).WithMany(p => p.Pagos)
+                .HasForeignKey(d => d.UsuarioId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Pago_Usuario");
         });
 
         modelBuilder.Entity<Pai>(entity =>
@@ -395,11 +391,6 @@ public partial class Context : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Transaccion_TransaccionDetalles");
 
-            entity.HasOne(d => d.MethodNavigation).WithMany(p => p.Transaccions)
-                .HasForeignKey(d => d.Method)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Transaccion_FormaPago");
-
             entity.HasOne(d => d.Voucher).WithMany(p => p.Transaccions)
                 .HasForeignKey(d => d.VoucherId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -413,7 +404,10 @@ public partial class Context : DbContext
             entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.ExtraData).HasColumnName("extraData");
             entity.Property(e => e.PrinterVoucherCommerce).HasColumnName("printerVoucherCommerce");
-            entity.Property(e => e.SequenceNumber).HasColumnName("sequenceNumber");
+            entity.Property(e => e.SequenceNumber)
+                .HasMaxLength(12)
+                .IsUnicode(false)
+                .HasColumnName("sequenceNumber");
             entity.Property(e => e.TransactionCashback).HasColumnName("transactionCashback");
             entity.Property(e => e.TransactionStatus).HasColumnName("transactionStatus");
             entity.Property(e => e.TransactionTip).HasColumnName("transactionTip");

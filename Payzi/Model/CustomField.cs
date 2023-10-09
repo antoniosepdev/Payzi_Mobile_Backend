@@ -11,7 +11,7 @@ public partial class CustomField
 
     public string? Value { get; set; }
 
-    public byte Print { get; set; }
+    public bool Print { get; set; }
 
     public virtual ICollection<ExtraDatum> ExtraData { get; set; } = new List<ExtraDatum>();
 }

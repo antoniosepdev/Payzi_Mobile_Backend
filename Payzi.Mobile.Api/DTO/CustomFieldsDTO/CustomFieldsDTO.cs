@@ -8,6 +8,6 @@
 
         public string Value { get; set; } = string.Empty;
 
-        public byte Print {  get; set; }
+        public bool Print {  get; set; }
     }
 }

@@ -7,9 +7,11 @@ public partial class Pago
 {
     public Guid Id { get; set; }
 
-    public Guid TransferenciaId { get; set; }
+    public Guid IdTransaccion { get; set; }
 
-    public virtual ICollection<Accion> Accions { get; set; } = new List<Accion>();
+    public Guid UsuarioId { get; set; }
 
-    public virtual Transaccion Transferencia { get; set; } = null!;
+    public virtual Transaccion IdTransaccionNavigation { get; set; } = null!;
+
+    public virtual Usuario Usuario { get; set; } = null!;
 }

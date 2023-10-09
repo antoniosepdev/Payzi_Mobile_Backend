@@ -8,6 +8,7 @@ namespace Payzi.Enumerate
 {
     public enum EnumerateClaims
     {
+        Rut,
         Email,
         ConnectionString
     }

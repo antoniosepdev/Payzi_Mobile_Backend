@@ -24,7 +24,7 @@ namespace Payzi.Persistent
                 await context.Pagos.AddAsync(pago);
             }
 
-            pago.TransferenciaId = this.TransferenciaId;
+            pago.IdTransaccion = this.IdTransaccion;
         }
 
         public async Task Delete(Payzi.Context.Context context)

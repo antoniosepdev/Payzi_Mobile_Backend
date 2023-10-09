@@ -9,7 +9,7 @@ public partial class TransaccionSalidum
 
     public byte TransactionStatus { get; set; }
 
-    public long SequenceNumber { get; set; }
+    public string SequenceNumber { get; set; } = null!;
 
     public byte PrinterVoucherCommerce { get; set; }
 

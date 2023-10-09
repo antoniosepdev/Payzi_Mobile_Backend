@@ -30,7 +30,6 @@
     <Folder Include="Controllers\BoletasControllers\" />
     <Folder Include="Controllers\TecladoControllers\" />
     <Folder Include="Controllers\VouchersControllers\" />
-    <Folder Include="Controllers\PagosControllers\" />
   </ItemGroup>
 
 </Project>

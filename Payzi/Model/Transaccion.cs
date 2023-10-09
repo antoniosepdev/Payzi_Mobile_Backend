@@ -17,7 +17,7 @@ public partial class Transaccion
 
     public int InstallmentsQuantity { get; set; }
 
-    public byte PrintVoucherOnApp { get; set; }
+    public bool PrintVoucherOnApp { get; set; }
 
     public int DteType { get; set; }
 
@@ -26,8 +26,6 @@ public partial class Transaccion
     public long VoucherId { get; set; }
 
     public virtual ExtraDatum ExtraDataNavigation { get; set; } = null!;
-
-    public virtual FormaPago MethodNavigation { get; set; } = null!;
 
     public virtual ICollection<Pago> Pagos { get; set; } = new List<Pago>();
 

@@ -13,7 +13,5 @@ public partial class Accion
 
     public Guid? ReferenciaId { get; set; }
 
-    public virtual MenuItem MenuItem { get; set; } = null!;
-
-    public virtual Pago? Referencia { get; set; }
+    public virtual MenuItem? Referencia { get; set; }
 }

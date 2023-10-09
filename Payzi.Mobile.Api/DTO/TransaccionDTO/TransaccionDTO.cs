@@ -16,7 +16,7 @@ namespace Payzi.Mobile.Api.DTO.TransaccionDTO
 
         public int installmentsQuantity { get; set; }
 
-        public byte printVoucherOnApp { get; set; }
+        public bool printVoucherOnApp { get; set; }
 
         public int dteType {  get; set; }
 

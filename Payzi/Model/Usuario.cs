@@ -29,5 +29,7 @@ public partial class Usuario
 
     public virtual Negocio Negocio { get; set; } = null!;
 
+    public virtual ICollection<Pago> Pagos { get; set; } = new List<Pago>();
+
     public virtual Rol RolCodigoNavigation { get; set; } = null!;
 }

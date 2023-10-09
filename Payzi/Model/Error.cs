@@ -5,7 +5,7 @@ namespace Payzi.Model;
 
 public partial class Error
 {
-    public int ErrorCode { get; set; }
+    public string ErrorCode { get; set; } = null!;
 
     public string ErrorMessage { get; set; } = null!;
 

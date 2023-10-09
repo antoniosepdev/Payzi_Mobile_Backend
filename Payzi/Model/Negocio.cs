@@ -27,8 +27,6 @@ public partial class Negocio
 
     public int? ComunaCodigo { get; set; }
 
-    public virtual Comuna? Comuna { get; set; }
-
     public virtual Persona Dueno { get; set; } = null!;
 
     public virtual ICollection<Usuario> Usuarios { get; set; } = new List<Usuario>();
