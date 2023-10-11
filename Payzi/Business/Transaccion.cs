@@ -18,5 +18,36 @@ namespace Payzi.Business
 
             return transaccion;
         }
+
+        public static async Task<List<Transaccion>> GetAll(Payzi.Context.Context context)
+        {
+            IQueryable<Payzi.Model.Transaccion> query = (from q in Query.GetTransacciones(context).Include("ExtraDataNavigation").Include("Pago") orderby q.IdTransaccion select q);
+
+            List<Transaccion> list = await query.ToList<Transaccion>();
+
+            return list;
+        }
+
+
+        public static async Task<List<Transaccion>> GetAll(Payzi.Context.Context context, Transaccion transaccion)
+        {
+            IQueryable<Payzi.Model.Transaccion> query = (from q in Query.GetTransacciones(context).Include("ExtraDataNavigation")
+                                                         where q.IdTransaccion == transaccion.IdTransaccion 
+                                                         orderby q.IdTransaccion select q);
+
+            List<Transaccion> list = await query.ToList<Transaccion>();
+
+            return list;
+        }
+
+
+        public static async Task<List<Transaccion>> GetAll(Payzi.Context.Context context, ExtraData extraData)
+        {
+            IQueryable<Payzi.Model.Transaccion> query = (from q in Query.GetTransacciones(context, extraData) orderby q.IdTransaccion select q);
+
+            List<Transaccion> list = await query.ToList<Transaccion>();
+
+            return list;
+        }
     }
 }

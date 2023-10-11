@@ -5,5 +5,7 @@ namespace Payzi.Mobile.Api.Services.TransaccionServices
     public interface ITransaccion
     {
         Task<IResult> AddTransaccion(TransaccionDTO transaccionDTO);
+
+        Task<IResult> GetTransaccion(GetTransaccionDTO getTransaccionDTO);
     }
 }

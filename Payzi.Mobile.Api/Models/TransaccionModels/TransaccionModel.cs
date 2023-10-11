@@ -7,7 +7,7 @@ namespace Payzi.Mobile.Api.Models.TransaccionModels
     {
     }
 
-    public class GetTransaccionModel : GenericBaseModel<TransaccionDTO>
+    public class GetTransaccionModel : GenericBaseModel<GetTransaccionDTO>
     {
     }
 

@@ -118,6 +118,14 @@ namespace Payzi
                 select pago;
         }
 
+        public static IQueryable<Payzi.Model.Pago> GetPagos(Payzi.Context.Context context, Transaccion transaccion)
+        {
+            return
+                from pago in context.Pagos 
+                where pago.IdTransaccion == transaccion.IdTransaccion 
+                select pago;
+        }
+
 
         #endregion
 
@@ -167,6 +175,23 @@ namespace Payzi
         {
             return
                 from transaccion in context.Transaccions
+                select transaccion;
+        }
+
+        public static IQueryable<Payzi.Model.Transaccion> GetTransacciones(Payzi.Context.Context context, Pago pago)
+        {
+            return
+                from transaccion in context.Transaccions
+                where transaccion.IdTransaccion == pago.IdTransaccion 
+                select transaccion;
+        }
+
+
+        public static IQueryable<Payzi.Model.Transaccion> GetTransacciones(Payzi.Context.Context context, ExtraData extraData)
+        {
+            return
+                from transaccion in context.Transaccions 
+                where transaccion.ExtraDataNavigation == extraData 
                 select transaccion;
         }
 
