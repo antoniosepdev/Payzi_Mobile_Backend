@@ -425,4 +425,8 @@ FodyWeavers.xsd
 # Additional files built by Visual Studio
 appsettings.*
 
+Payzi.Abstraction\bin
+Payzi.Abstraction\obj
+
+
 # End of https://www.toptal.com/developers/gitignore/api/dotnetcore,visualstudiocode,visualstudio
