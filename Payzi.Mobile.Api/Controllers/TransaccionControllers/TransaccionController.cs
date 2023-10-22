@@ -25,6 +25,181 @@ namespace Payzi.Mobile.Api.Controllers.TransaccionControllers
             _context = context;
         }
 
+        public async Task<IResult> GetTransaccion(TransaccionDTO transaccionDTO)
+        {
+            GetTransaccionModel getTransaccionModel = new GetTransaccionModel();
+
+            getTransaccionModel.Success = true;
+
+            try
+            {
+                Payzi.Business.Transaccion transaccion = await Payzi.Business.Transaccion.GetAsync(this._context, transaccionDTO.idTransaccion);
+
+                Payzi.Business.ExtraData extraData = await Payzi.Business.ExtraData.GetAsync(this._context, transaccion.ExtraData);
+
+                Payzi.Business.Pago pago = await Payzi.Business.Pago.GetAsync(this._context, transaccion);
+
+                Payzi.Business.Usuario usuario = await Payzi.Business.Usuario.GetAsync(this._context, pago.IdUsuario);
+
+                List<Payzi.Business.Pago> pagos = await Payzi.Business.Pago.GetAll(this._context, usuario);
+
+                List<Payzi.Business.Transaccion> transaccions = await Payzi.Business.Transaccion.GetAll(this._context, transaccion);
+
+                List<Payzi.Business.ExtraData> extraDatas = await Payzi.Business.ExtraData.GetAll(this._context, transaccion);
+
+                List<Payzi.Business.CustomFields> customFields = await Payzi.Business.CustomFields.GetAll(this._context, extraData);
+
+                List<CustomFields2DTO> customFieldsDTO2 = new List<CustomFields2DTO>();
+
+                GetTransaccionDTO getTransaccionDTO = new GetTransaccionDTO();
+
+                ExtraDataDTO2 extraDataDTO2 = new ExtraDataDTO2();
+
+                foreach (Payzi.Business.CustomFields item in customFields)
+                {
+                    if (item != null)
+                    {
+                        CustomFields2DTO customFields2DTO = new CustomFields2DTO
+                        {
+                            Name = item.Name,
+                            Value = item.Value,
+                            Print = item.Print
+                        };
+                        customFieldsDTO2.Add(customFields2DTO);
+                    }
+                }
+
+                foreach (Payzi.Business.ExtraData item in extraDatas)
+                {
+                    if (item != null)
+                    {
+                        extraDataDTO2.TaxIdnValidation = item.TaxIdnValidation;
+                        extraDataDTO2.ExemptAmount = item.ExemptAmount;
+                        extraDataDTO2.NetAmount = item.NetAmount;
+                        extraDataDTO2.SourceName = item.SourceName;
+                        extraDataDTO2.SourceVersion = item.SourceVersion;
+                        extraDataDTO2.CustomFields = customFieldsDTO2;
+                    }
+                }
+
+                GetTransaccionDTO getTransaccionDTO2 = new GetTransaccionDTO
+                {
+                    amount = transaccion.Amount,
+                    tip = transaccion.Tip,
+                    cashback = transaccion.Cashback,
+                    method = transaccion.Method,
+                    installmentsQuantity = transaccion.InstallmentsQuantity,
+                    printVoucherOnApp = transaccion.PrintVoucherOnApp,
+                    dteType = transaccion.DteType,
+                    extraData = extraDataDTO2
+                };
+
+                getTransaccionModel.Code = StatusCodes.Status200OK;
+                getTransaccionModel.Status = "Ok";
+                getTransaccionModel.Data = getTransaccionDTO2;
+
+                return Results.Ok(getTransaccionModel);
+            }
+            catch
+            {
+                getTransaccionModel.Code = StatusCodes.Status400BadRequest;
+                getTransaccionModel.Status = "ERROR";
+                getTransaccionModel.DataList = null;
+
+                return Results.BadRequest(getTransaccionModel);
+            }
+        }
+
+        public async Task<IResult> GetTransaccion2(Guid id)
+        {
+            GetTransaccionModel getTransaccionModel = new GetTransaccionModel();
+
+            getTransaccionModel.Success = true;
+
+            try
+            {
+                Payzi.Business.Transaccion transaccion = await Payzi.Business.Transaccion.GetAsync(this._context, id);
+
+                Payzi.Business.ExtraData extraData = await Payzi.Business.ExtraData.GetAsync(this._context, transaccion.ExtraData);
+
+                Payzi.Business.Pago pago = await Payzi.Business.Pago.GetAsync(this._context, transaccion);
+
+                Payzi.Business.Usuario usuario = await Payzi.Business.Usuario.GetAsync(this._context, pago.IdUsuario);
+
+                List<Payzi.Business.Pago> pagos = await Payzi.Business.Pago.GetAll(this._context, usuario);
+
+                List<Payzi.Business.Transaccion> transaccions = await Payzi.Business.Transaccion.GetAll(this._context, transaccion);
+
+                List<Payzi.Business.ExtraData> extraDatas = await Payzi.Business.ExtraData.GetAll(this._context, transaccion);
+
+                List<Payzi.Business.CustomFields> customFields = await Payzi.Business.CustomFields.GetAll(this._context, extraData);
+
+                List<CustomFields2DTO> customFieldsDTO2 = new List<CustomFields2DTO>();
+
+                GetTransaccionDTO getTransaccionDTO = new GetTransaccionDTO();
+
+                ExtraDataDTO2 extraDataDTO2 = new ExtraDataDTO2();
+
+                foreach (Payzi.Business.CustomFields item in customFields)
+                {
+                    if (item != null)
+                    {
+                        CustomFields2DTO customFields2DTO = new CustomFields2DTO
+                        {
+                            Name = item.Name,
+                            Value = item.Value,
+                            Print = item.Print
+                        };
+                        customFieldsDTO2.Add(customFields2DTO);
+                    }
+                }
+
+                foreach (Payzi.Business.ExtraData item in extraDatas)
+                {
+                    if (item != null)
+                    {
+                        extraDataDTO2.TaxIdnValidation = item.TaxIdnValidation;
+                        extraDataDTO2.ExemptAmount = item.ExemptAmount;
+                        extraDataDTO2.NetAmount = item.NetAmount;
+                        extraDataDTO2.SourceName = item.SourceName;
+                        extraDataDTO2.SourceVersion = item.SourceVersion;
+                        extraDataDTO2.CustomFields = customFieldsDTO2;
+                    }
+                }
+
+                GetTransaccionDTO getTransaccionDTO2 = new GetTransaccionDTO
+                {
+                    amount = transaccion.Amount,
+                    tip = transaccion.Tip,
+                    cashback = transaccion.Cashback,
+                    method = transaccion.Method,
+                    installmentsQuantity = transaccion.InstallmentsQuantity,
+                    printVoucherOnApp = transaccion.PrintVoucherOnApp,
+                    dteType = transaccion.DteType,
+                    extraData = extraDataDTO2
+                };
+
+                getTransaccionModel.Code = StatusCodes.Status200OK;
+                getTransaccionModel.Status = "Ok";
+                getTransaccionModel.Data = getTransaccionDTO2;
+
+                return Results.Ok(getTransaccionModel);
+            }
+            catch
+            {
+                getTransaccionModel.Code = StatusCodes.Status400BadRequest;
+                getTransaccionModel.Status = "ERROR";
+                getTransaccionModel.DataList = null;
+
+                return Results.BadRequest(getTransaccionModel);
+            }
+        }
+
+
+
+
+
+
         public async Task<IResult> GetAllTransaccion(string email)
         {
             GetTransaccionModel getTransaccionModel = new GetTransaccionModel();

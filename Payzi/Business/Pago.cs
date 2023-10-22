@@ -37,6 +37,26 @@ namespace Payzi.Business
             return pago;
         }
 
+        public static async Task<Pago> GetAsync(Payzi.Context.Context context, Usuario usuario)
+        {
+            Payzi.Model.Pago query = await Query.GetPagos(context, usuario).Include("IdUsuarioNavigation").Include("IdTransaccionNavigation").SingleOrDefaultAsync<Payzi.Model.Pago>(x => x.IdUsuario == usuario.Id);
+
+            Pago pago = query.SingleOrDefault<Pago>();
+
+            return pago;
+        }
+
+        public static async Task<Pago> GetAsync(Payzi.Context.Context context, Transaccion transaccion, Usuario usuario)
+        {
+            Payzi.Model.Pago query = await Query.GetPagos(context, transaccion, usuario).Include("IdUsuarioNavigation").Include("IdTransaccionNavigation").SingleOrDefaultAsync<Payzi.Model.Pago>(x => x.IdTransaccion == transaccion.IdTransaccion && x.IdUsuario == usuario.Id);
+
+            Pago pago = query.SingleOrDefault<Pago>();
+
+            return pago;
+        }
+
+
+
         public static async Task<List<Pago>> GetAll(Payzi.Context.Context context)
         {
             IQueryable<Payzi.Model.Pago> query = (from q in Query.GetPagos(context)  select q);

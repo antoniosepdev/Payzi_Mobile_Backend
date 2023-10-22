@@ -151,6 +151,13 @@ namespace Payzi
                 select pago;
         }
 
+        public static IQueryable<Payzi.Model.Pago> GetPagos(Payzi.Context.Context context, Transaccion transaccion, Usuario usuario)
+        {
+            return from pago in context.Pagos 
+                   where pago.IdTransaccion == transaccion.IdTransaccion && pago.IdUsuario == usuario.Id
+                   select pago;
+        }
+
 
         #endregion
 

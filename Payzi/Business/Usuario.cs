@@ -22,6 +22,16 @@ namespace Payzi.Business
             return usuario;
         }
 
+        public static async Task<Usuario> GetAsync(Payzi.Context.Context context, Guid id)
+        {
+            Payzi.Model.Usuario? user = await Query.GetUsuarios(context).Include("Negocio").Include("RolCodigoNavigation").SingleOrDefaultAsync<Payzi.Model.Usuario>(x => x.Id == id);
+
+            Payzi.Business.Usuario usuario = user.SingleOrDefault<Payzi.Business.Usuario>();
+
+            return usuario;
+        }
+
+
         public static async Task<Usuario> GetAsync(Payzi.Context.Context context, string email)
         {
             Payzi.Model.Usuario? user = await Query.GetUsuarios(context).Include("Negocio").Include("RolCodigoNavigation").SingleOrDefaultAsync<Payzi.Model.Usuario>(x => x.Email == email);

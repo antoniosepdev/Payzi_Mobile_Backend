@@ -8,11 +8,11 @@ using Payzi.Mobile.Api.Models.TransaccionModels;
 
 namespace Payzi.Mobile.Api.Endpoints.TransferenciaEndpoints
 {
-    public class GetAllTransaccionEndpoint : IEndpoint
+    public class GetAllTransaccionsEndpoint : IEndpoint
     {
         public IEndpointRouteBuilder AddRoutes(IEndpointRouteBuilder endpoints)
         {
-            endpoints.MapGet("/transaccion/Get/{email}", [Authorize] async (HttpContext httpContext, Payzi.Context.Context context, [FromRoute] string email) =>
+            endpoints.MapGet("/transaccion/GetAll/{email}", [Authorize] async (HttpContext httpContext, Payzi.Context.Context context, [FromRoute] string email) =>
             {
                 Payzi.Business.Usuario user = await Payzi.Business.Usuario.GetAsync(context, email);
 
