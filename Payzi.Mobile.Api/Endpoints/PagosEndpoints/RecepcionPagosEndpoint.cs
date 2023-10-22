@@ -11,7 +11,7 @@ namespace Payzi.Mobile.Api.Endpoints.PagosEndpoints
     {
         public IEndpointRouteBuilder AddRoutes(IEndpointRouteBuilder endpoints)
         {
-            endpoints.MapPost("/Pagos/RecepcionPagos", [Authorize] async (HttpContext httpContext, Payzi.Context.Context context, [FromBody] RecepcionPagosDTO recepcionPagosDTO) =>
+            endpoints.MapPost("/Pagos/RecepcionPagos", [AllowAnonymous] async (HttpContext httpContext, Payzi.Context.Context context, [FromBody] RecepcionPagosDTO recepcionPagosDTO) =>
             {
                 PagosController pagosController = new PagosController(httpContext, context);
 

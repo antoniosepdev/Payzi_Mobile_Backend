@@ -12,7 +12,7 @@ namespace Payzi.Mobile.Api.Endpoints.TransferenciaEndpoints
     {
         public IEndpointRouteBuilder AddRoutes(IEndpointRouteBuilder endpoints)
         {
-            endpoints.MapPost("/transaccion/Get", [Authorize] async (HttpContext httpContext, Payzi.Context.Context context, [FromBody] TransaccionDTO transaccionDTO) =>
+            endpoints.MapPost("/transaccion/Get", [AllowAnonymous] async (HttpContext httpContext, Payzi.Context.Context context, [FromBody] TransaccionDTO transaccionDTO) =>
             {
                 TransaccionController transaccionController = new TransaccionController(httpContext, context);
 

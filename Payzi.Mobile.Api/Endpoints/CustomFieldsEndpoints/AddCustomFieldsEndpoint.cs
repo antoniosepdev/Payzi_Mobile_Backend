@@ -12,7 +12,7 @@ namespace Payzi.Mobile.Api.Endpoints.CustomFieldsEndpoints
     {
         public IEndpointRouteBuilder AddRoutes(IEndpointRouteBuilder endpoints)
         {
-            endpoints.MapPost("/CustomFields/Add", [Authorize] async (HttpContext httpContext, Payzi.Context.Context context, [FromBody] CustomFieldsDTO customFieldsDTO ) =>
+            endpoints.MapPost("/CustomFields/Add", [AllowAnonymous] async (HttpContext httpContext, Payzi.Context.Context context, [FromBody] CustomFieldsDTO customFieldsDTO ) =>
             {
                 CustomFieldsController customFieldsController = new CustomFieldsController(httpContext, context);
 
