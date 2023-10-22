@@ -30,6 +30,14 @@ namespace Payzi
                 select customField;
         }
 
+        public static IQueryable<Payzi.Model.CustomField> GetCustomFields(Payzi.Context.Context context, Payzi.Business.ExtraData extraData)
+        {
+            return
+                from customField in context.CustomFields
+                where customField.IdCustomFields == extraData.CustomFields
+                select customField;
+        }
+
         #endregion
 
         #region ExtraData
@@ -41,6 +49,17 @@ namespace Payzi
                 select extraData;
         }
 
+        public static IQueryable<Payzi.Model.ExtraDatum> GetExtraData(Payzi.Context.Context context, Payzi.Business.Transaccion transaccion)
+        {
+            return
+                from extraData in context.ExtraData
+                where extraData.Id == transaccion.ExtraData
+                select extraData;
+        }
+
+
+        #endregion
+
         #region FormaPago
 
         public static IQueryable<Payzi.Model.FormaPago> GetFormaPagos(Payzi.Context.Context context)
@@ -49,8 +68,6 @@ namespace Payzi
                 from FormaPago in context.FormaPagos
                 select FormaPago;
         }
-
-        #endregion
 
         #endregion
 
@@ -123,6 +140,14 @@ namespace Payzi
             return
                 from pago in context.Pagos 
                 where pago.IdTransaccion == transaccion.IdTransaccion 
+                select pago;
+        }
+
+        public static IQueryable<Payzi.Model.Pago> GetPagos(Payzi.Context.Context context, Usuario usuario)
+        {
+            return
+                from pago in context.Pagos
+                where pago.IdUsuario == usuario.Id
                 select pago;
         }
 

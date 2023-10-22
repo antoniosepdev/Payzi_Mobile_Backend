@@ -16,4 +16,19 @@
 
         public Guid CustomFields { get; set; } = Guid.Empty;
     }
+
+    public class ExtraDataDTO2
+    {
+        public string TaxIdnValidation { get; set; } = string.Empty;
+
+        public long? ExemptAmount { get; set; }
+
+        public long? NetAmount { get; set; }
+
+        public string SourceName { get; set; } = string.Empty;
+
+        public string SourceVersion { get; set; } = string.Empty;
+
+        public object CustomFields { get; set; }
+    }
 }

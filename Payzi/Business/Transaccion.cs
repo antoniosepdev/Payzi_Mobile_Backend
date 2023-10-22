@@ -12,7 +12,7 @@ namespace Payzi.Business
     {
         public static async Task<Transaccion> GetAsync(Payzi.Context.Context context, Guid idTransaccion)
         {
-            Payzi.Model.Transaccion query = await Query.GetTransacciones(context).SingleOrDefaultAsync<Payzi.Model.Transaccion>(x => x.IdTransaccion == idTransaccion);
+            Payzi.Model.Transaccion query = await Query.GetTransacciones(context).Include("ExtraDataNavigation").SingleOrDefaultAsync<Payzi.Model.Transaccion>(x => x.IdTransaccion == idTransaccion);
 
             Transaccion transaccion = query.SingleOrDefault<Transaccion>();
 
@@ -31,7 +31,7 @@ namespace Payzi.Business
 
         public static async Task<List<Transaccion>> GetAll(Payzi.Context.Context context, Transaccion transaccion)
         {
-            IQueryable<Payzi.Model.Transaccion> query = (from q in Query.GetTransacciones(context).Include("ExtraDataNavigation")
+            IQueryable<Payzi.Model.Transaccion> query = (from q in Query.GetTransacciones(context).Include("ExtraDataNavigation").Include("Pagos")
                                                          where q.IdTransaccion == transaccion.IdTransaccion 
                                                          orderby q.IdTransaccion select q);
 

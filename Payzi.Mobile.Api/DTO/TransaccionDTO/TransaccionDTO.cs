@@ -29,8 +29,6 @@ namespace Payzi.Mobile.Api.DTO.TransaccionDTO
 
     public class GetTransaccionDTO
     {
-        public Guid idTransaccion { get; set; } = Guid.Empty;
-
         public long amount { get; set; }
 
         public long tip { get; set; }
@@ -45,7 +43,7 @@ namespace Payzi.Mobile.Api.DTO.TransaccionDTO
 
         public int dteType { get; set; }
 
-        public Guid extraData { get; set; } = Guid.Empty;
+        public object extraData { get; set; }
 
     }
 }

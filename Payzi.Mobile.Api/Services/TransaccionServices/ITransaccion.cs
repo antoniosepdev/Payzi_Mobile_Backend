@@ -6,6 +6,6 @@ namespace Payzi.Mobile.Api.Services.TransaccionServices
     {
         Task<IResult> AddTransaccion(TransaccionDTO transaccionDTO);
 
-        Task<IResult> GetTransaccion(GetTransaccionDTO getTransaccionDTO);
+        Task<IResult> GetAllTransaccion(string email);
     }
 }
