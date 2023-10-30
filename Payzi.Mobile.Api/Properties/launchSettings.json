@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "Payzi.Mobile.Api": {
+    "Payzi.Backend.Api-Dev": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
@@ -19,6 +19,17 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
+    "Payzi.Backend.Api-Prod": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:7164;http://localhost:5011",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production"
+      }
+    },
+
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
