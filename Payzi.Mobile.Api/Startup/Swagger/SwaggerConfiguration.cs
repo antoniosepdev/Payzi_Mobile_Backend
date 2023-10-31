@@ -5,7 +5,10 @@
         public static WebApplication ConfigureSwagger(this WebApplication app)
         {
             app.UseSwagger();
-            app.UseSwaggerUI();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Mi API v1");
+            });
 
             return app;
         }

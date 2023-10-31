@@ -4,8 +4,6 @@ using Payzi.Mobile.Api.Startup.FluentValidation;
 using Payzi.Mobile.Api.Startup.IEndpoint;
 using Payzi.Mobile.Api.Startup.Swagger;
 using Microsoft.AspNetCore.Authentication;
-
-
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
@@ -66,22 +64,17 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Mi API", Version = "v1" });
+    c.SwaggerDoc(
+        "v1", new OpenApiInfo { Title = "Mi API", Version = "v1" }
+        );
 });
 
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Mi API v1");
-    });
-
-    //app.ConfigureSwagger();
+    app.ConfigureSwagger();
 }
 
 app.UseHttpsRedirection();
