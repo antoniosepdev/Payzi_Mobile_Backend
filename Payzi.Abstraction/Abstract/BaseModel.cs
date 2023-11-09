@@ -43,5 +43,31 @@ namespace Payzi.Abstraction.Abstract
             get;
             set;
         } = string.Empty;
+
+        //Manejo de errores.
+        public string errorCode
+        {
+            get;
+            set;
+        } = string.Empty
+
+        public string errorMessage
+        {
+            get;
+            set;
+        } = string.Empty;
+
+        public int errorCodeOnApp
+        {
+            get;
+            set;
+        }
+
+        public string errorMessageOnApp
+        {
+            get;
+            set;
+        } = string.Empty;
+
     }
 }
