@@ -41,7 +41,6 @@ namespace Payzi.Mobile.Api.Controllers.LoginControllers
                             login.Code = (int)StatusCodes.Status400BadRequest;
                             login.Message = "R.U.N. o contraseña incorrectos. Verifique sus datos e inténte acceder nuevamente.";
                             login.Status = "ERROR";
-                            login.SubStatus = "ERROR";
 
                             return Results.BadRequest(login);
                         }
@@ -50,7 +49,6 @@ namespace Payzi.Mobile.Api.Controllers.LoginControllers
                             login.Code = (int)StatusCodes.Status401Unauthorized;
                             login.Message = "Usted no tiene suficientes permisos para ingresar a la aplicación. Por favor contacte al administrador.";
                             login.Status = "ERROR";
-                            login.SubStatus = "ERROR";
 
                             return Results.BadRequest(login);
                         }
@@ -59,7 +57,6 @@ namespace Payzi.Mobile.Api.Controllers.LoginControllers
                             login.Code = (int)StatusCodes.Status403Forbidden;
                             login.Message = "Su cuenta de acceso ha sido caducada. Por favor contacte al administrador del sistema.";
                             login.Status = "ERROR";
-                            login.SubStatus = "ERROR";
 
                             return Results.BadRequest(login);
                         }
@@ -68,7 +65,6 @@ namespace Payzi.Mobile.Api.Controllers.LoginControllers
                             login.Code = (int)StatusCodes.Status423Locked;
                             login.Message = "Su cuenta de acceso ha sido bloqueada por exceder el máximo de intentos fallidos permitidos.";
                             login.Status = "ERROR";
-                            login.SubStatus = "ERROR";
 
                             return Results.BadRequest(login);
                         }
@@ -76,7 +72,6 @@ namespace Payzi.Mobile.Api.Controllers.LoginControllers
                         {
                             login.Code = (int)StatusCodes.Status200OK;
                             login.Status = "OK";
-                            login.SubStatus = "OK";
                             login.Token = token;
 
                             return Results.Ok(login);

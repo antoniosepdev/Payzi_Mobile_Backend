@@ -19,5 +19,14 @@ namespace Payzi.Business
 
             return transaccionSalida;
         }
+
+        public static async Task<List<TransaccionSalida>> GetAll(Payzi.Context.Context context)
+        {
+            IQueryable<Payzi.Model.TransaccionSalidum> query = (from q in Query.GetTransaccionesSalida(context) orderby q.Id select q);
+
+            List<TransaccionSalida> list = await query.ToList<TransaccionSalida>();
+
+            return list;
+        }
     }
 }

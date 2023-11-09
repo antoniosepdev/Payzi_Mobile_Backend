@@ -18,5 +18,14 @@ namespace Payzi.Business
 
             return voucher;
         }
+
+        public static async Task<List<Voucher>> GetAll(Payzi.Context.Context context)
+        {
+            IQueryable<Payzi.Model.Voucher> query = (from q in Query.GetVoucher(context) orderby q.Id select q);
+
+            List<Voucher> list = await query.ToList<Voucher>();
+
+            return list;
+        }
     }
 }

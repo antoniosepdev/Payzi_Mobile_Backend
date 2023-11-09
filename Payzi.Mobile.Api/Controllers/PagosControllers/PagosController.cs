@@ -62,6 +62,17 @@ namespace Payzi.Mobile.Api.Controllers.PagosControllers
 
             try
             {
+                //Dato en duro, borrar después.
+                string UsuarioId = "64A84B5F-BACA-4C8B-884E-D3EC9E9191E4";
+
+                Payzi.Business.Usuario usuario = await Payzi.Business.Usuario.GetAsync(this._context, Guid.Parse(UsuarioId));
+
+                /////////////////////
+
+                recepcionPagosModel.Status = null;
+                recepcionPagosModel.Message = null;
+                recepcionPagosModel.Token = null;
+
                 #region CustomFields
 
                 Payzi.Business.CustomFields customFields = new Payzi.Business.CustomFields
@@ -93,17 +104,25 @@ namespace Payzi.Mobile.Api.Controllers.PagosControllers
 
                 #region Voucher
 
+                List<Payzi.Business.Voucher> vouchers = await Payzi.Business.Voucher.GetAll(this._context);
+
+                int NumeroVoucher = vouchers.Count() + 1;
+
                 Payzi.Business.Voucher voucher = new Payzi.Business.Voucher
                 {
-                    Id = recepcionPagosDTO.Voucher.Id, //Numerico BigInt
+                    Id = NumeroVoucher,
                     NombreCliente = recepcionPagosDTO.Voucher.NombreCliente, //Se obtendrá del pago? nullable
                     NumeroDocumento = recepcionPagosDTO.Voucher.NumeroDocumento, //Nullable
                     Monto = amount,
                     FechaEmision = DateTime.Now,
                     Descripcion = recepcionPagosDTO.Voucher.Descripcion, //Nullable
                     MetodoPagoCodigo = recepcionPagosDTO.Transaccion.method, // 0, 1, 2
-                    NumeroTransaccion = recepcionPagosDTO.Voucher.NumeroTransaccion,
-                    UsuarioId = this.CurrentUser().Id, //Debe ser RUT
+                    NumeroTransaccion = NumeroVoucher.ToString(),
+
+                    //Dato en duro, reemplazar por linea comentada.
+                    UsuarioId = Guid.Parse(UsuarioId),
+                    //UsuarioId = this.CurrentUser().Id, //ID del comercio
+
                     Estado = recepcionPagosDTO.Voucher.Estado //True False
                 };
 
@@ -131,21 +150,15 @@ namespace Payzi.Mobile.Api.Controllers.PagosControllers
 
                 #region TransaccionSalida
 
-                if (recepcionPagosDTO.TransaccionSalida.SequenceNumber.Length != 12)
-                {
-                    recepcionPagosModel.Success = false;
-                    recepcionPagosModel.Code = StatusCodes.Status400BadRequest;
-                    recepcionPagosModel.Data = null;
+                List<Payzi.Business.TransaccionSalida> transaccionSalidas = await Payzi.Business.TransaccionSalida.GetAll(this._context);
 
-                    return Results.BadRequest(recepcionPagosModel);
-
-                }
+                string SequenceNumber = (transaccionSalidas.Count()+1).ToString().PadLeft(12,'0');
 
                 Payzi.Business.TransaccionSalida transaccionSalida = new Payzi.Business.TransaccionSalida
                 {
                     Id = Guid.NewGuid(),
                     TransactionStatus = recepcionPagosDTO.TransaccionSalida.TransactionStatus, //True o false si la transacción se realizo correctamente.
-                    SequenceNumber = recepcionPagosDTO.TransaccionSalida.SequenceNumber, //12 digitos varchar max
+                    SequenceNumber = SequenceNumber,
                     PrinterVoucherCommerce = recepcionPagosDTO.TransaccionSalida.PrinterVoucherCommerce,
                     ExtraData = extraData.Id,
                     TransactionTip = transaccion.Tip,
@@ -160,7 +173,10 @@ namespace Payzi.Mobile.Api.Controllers.PagosControllers
                 {
                     IdPago = Guid.NewGuid(),
                     IdTransaccion = transaccion.IdTransaccion,
-                    IdUsuario = this.CurrentUser().Id,
+
+                    //Dato en duro, reemplazar por linea comentada.
+                    IdUsuario = Guid.Parse(UsuarioId),
+                    //IdUsuario = this.CurrentUser().Id,
 
                 };
 
@@ -279,7 +295,7 @@ namespace Payzi.Mobile.Api.Controllers.PagosControllers
                 }
 
                 //(9) Error ocurrido durante el proceso de pago en la aplicación.
-                /*PENDIENTE*/
+                //Dentro del catch
 
                 //(10) En caso de que durante el proceso de la transacción esta haya sido cancelada por el usuario.
                 /*PENDIENTE*/
@@ -310,8 +326,10 @@ namespace Payzi.Mobile.Api.Controllers.PagosControllers
                 /*PENDIENTE*/
 
                 //(16) El canal de pago asociado al POS aun espera su asignación.
+                /*PENDIENTE*/
 
                 //(17) El canal de pago asociado al Terminal experimentó algún error durante su asignación.
+                /*PENDIENTE*/
 
                 //(18) En caso de que el atributo dteType traiga un valor que no esta registrado como un tipo válido.
                 if (recepcionPagosDTO.Transaccion.dteType != 0 && recepcionPagosDTO.Transaccion.dteType != 48 && recepcionPagosDTO.Transaccion.dteType != 33 && recepcionPagosDTO.Transaccion.dteType != 99)
@@ -325,7 +343,7 @@ namespace Payzi.Mobile.Api.Controllers.PagosControllers
                 }
 
                 //(19) Ocurre cuando se envía un RUT en el campo de validación y este no coincide con el utilizado para habilitar la aplicación de Pagos
-                if (recepcionPagosDTO.ExtraData.TaxIdnValidation != null && recepcionPagosDTO.ExtraData.TaxIdnValidation != this.CurrentCommerce.Rut)
+                if (recepcionPagosDTO.ExtraData.TaxIdnValidation != null && recepcionPagosDTO.ExtraData.TaxIdnValidation != usuario.Negocio.Rut)//this.CurrentCommerce.Rut)
                 {
                     recepcionPagosModel.errorCode = "19";
                     recepcionPagosModel.errorMessage = "El RUT indicado no coincide con el utilizado.";
@@ -353,7 +371,7 @@ namespace Payzi.Mobile.Api.Controllers.PagosControllers
                 }
 
                 //(I-02) Si supera el máximo numero de caracteres por cada Customfield.
-                if (recepcionPagosDTO.CustomFields.Name.Length <= 28 || recepcionPagosDTO.CustomFields.Value.Length <= 28)
+                if (recepcionPagosDTO.CustomFields.Name.Length > 28 || recepcionPagosDTO.CustomFields.Value.Length > 28)
                 {
                     recepcionPagosModel.errorCode = "I-02";
                     recepcionPagosModel.errorMessage = "Los campos superan el máximo de caracteres.";
@@ -408,14 +426,20 @@ namespace Payzi.Mobile.Api.Controllers.PagosControllers
                 recepcionPagosModel.Success = true;
                 recepcionPagosModel.Code = StatusCodes.Status200OK;
                 recepcionPagosModel.Data = null;
+                recepcionPagosModel.Status = "Se ha realizado el pago con éxito";
+                recepcionPagosModel.errorCode = null;
+                recepcionPagosModel.errorMessage = null;
+                recepcionPagosModel.errorMessageOnApp = null;
 
                 return Results.Ok(recepcionPagosModel);
             }
             catch
             {
-                recepcionPagosModel.Success = false;
-                recepcionPagosModel.Code = StatusCodes.Status500InternalServerError;
-                recepcionPagosModel.Data = null;
+                //(9) Error ocurrido durante el proceso de pago en la aplicación.
+                recepcionPagosModel.errorCode = "9";
+                recepcionPagosModel.errorMessage = "Error en proceso de pago.";
+                recepcionPagosModel.errorCodeOnApp = StatusCodes.Status500InternalServerError;
+                recepcionPagosModel.errorMessageOnApp = "Internal Server Error";
 
                 return Results.BadRequest(recepcionPagosModel);
             }

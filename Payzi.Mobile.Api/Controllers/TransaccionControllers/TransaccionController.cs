@@ -195,11 +195,6 @@ namespace Payzi.Mobile.Api.Controllers.TransaccionControllers
             }
         }
 
-
-
-
-
-
         public async Task<IResult> GetAllTransaccion(string email)
         {
             GetTransaccionModel getTransaccionModel = new GetTransaccionModel();

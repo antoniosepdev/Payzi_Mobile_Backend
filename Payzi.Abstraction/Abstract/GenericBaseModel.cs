@@ -9,7 +9,8 @@ namespace Payzi.Abstraction.Abstract
 {
     public abstract class GenericBaseModel<T> : BaseModel
     {
-        [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+        //[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public T? Data
         {
             get;
