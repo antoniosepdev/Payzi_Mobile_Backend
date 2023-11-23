@@ -27,6 +27,8 @@ public partial class Usuario
 
     public Guid NegocioId { get; set; }
 
+    public virtual Cantidad? Cantidad { get; set; }
+
     public virtual Negocio Negocio { get; set; } = null!;
 
     public virtual ICollection<Pago> Pagos { get; set; } = new List<Pago>();

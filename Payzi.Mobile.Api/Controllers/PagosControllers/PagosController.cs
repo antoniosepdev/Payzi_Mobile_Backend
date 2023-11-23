@@ -102,22 +102,40 @@ namespace Payzi.Mobile.Api.Controllers.PagosControllers
 
                 #endregion
 
+                #region Contador
+
+                Payzi.Business.Cantidad cantidad1 = await Payzi.Business.Cantidad.GetAsync(this._context, usuario);
+
+                long numeroCantidad = 0;
+
+                if (cantidad1 != null)
+                {
+                    numeroCantidad = cantidad1.Cantidad1;
+                }
+
+                Payzi.Business.Cantidad cantidad = new Payzi.Business.Cantidad
+                {
+                    IdUsuario = Guid.Parse(UsuarioId),
+                    Cantidad1 = (numeroCantidad + 1)
+                };
+
+
+                #endregion
+
                 #region Voucher
 
-                List<Payzi.Business.Voucher> vouchers = await Payzi.Business.Voucher.GetAll(this._context);
-
-                int NumeroVoucher = vouchers.Count() + 1;
+                long NumeroVoucher = numeroCantidad;
 
                 Payzi.Business.Voucher voucher = new Payzi.Business.Voucher
                 {
-                    Id = NumeroVoucher,
+                    Id = NumeroVoucher+1,
                     NombreCliente = recepcionPagosDTO.Voucher.NombreCliente, //Se obtendrá del pago? nullable
                     NumeroDocumento = recepcionPagosDTO.Voucher.NumeroDocumento, //Nullable
                     Monto = amount,
                     FechaEmision = DateTime.Now,
                     Descripcion = recepcionPagosDTO.Voucher.Descripcion, //Nullable
                     MetodoPagoCodigo = recepcionPagosDTO.Transaccion.method, // 0, 1, 2
-                    NumeroTransaccion = NumeroVoucher.ToString(),
+                    NumeroTransaccion = (NumeroVoucher+1).ToString(),
 
                     //Dato en duro, reemplazar por linea comentada.
                     UsuarioId = Guid.Parse(UsuarioId),
@@ -150,9 +168,7 @@ namespace Payzi.Mobile.Api.Controllers.PagosControllers
 
                 #region TransaccionSalida
 
-                List<Payzi.Business.TransaccionSalida> transaccionSalidas = await Payzi.Business.TransaccionSalida.GetAll(this._context);
-
-                string SequenceNumber = (transaccionSalidas.Count()+1).ToString().PadLeft(12,'0');
+                string SequenceNumber = (numeroCantidad+1).ToString().PadLeft(12, '0');
 
                 Payzi.Business.TransaccionSalida transaccionSalida = new Payzi.Business.TransaccionSalida
                 {
@@ -406,6 +422,8 @@ namespace Payzi.Mobile.Api.Controllers.PagosControllers
                 #endregion
 
                 #region Save
+
+                await cantidad.Save(this._context);
 
                 await customFields.Save(this._context);
 

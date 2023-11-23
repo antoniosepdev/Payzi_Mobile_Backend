@@ -17,5 +17,7 @@ public partial class Comuna
 
     public virtual Ciudad Ciudad { get; set; } = null!;
 
+    public virtual ICollection<Negocio> Negocios { get; set; } = new List<Negocio>();
+
     public virtual ICollection<Persona> Personas { get; set; } = new List<Persona>();
 }

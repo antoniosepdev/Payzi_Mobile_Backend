@@ -16,6 +16,8 @@ public partial class Context : DbContext
 
     public virtual DbSet<Boletum> Boleta { get; set; }
 
+    public virtual DbSet<Cantidad> Cantidads { get; set; }
+
     public virtual DbSet<Ciudad> Ciudads { get; set; }
 
     public virtual DbSet<Comuna> Comunas { get; set; }
@@ -79,6 +81,21 @@ public partial class Context : DbContext
             entity.ToTable("Boleta", "Tesoreria");
 
             entity.Property(e => e.Codigo).ValueGeneratedNever();
+        });
+
+        modelBuilder.Entity<Cantidad>(entity =>
+        {
+            entity.HasKey(e => e.IdUsuario).HasName("PK_Cantidad_1");
+
+            entity.ToTable("Cantidad", "Tesoreria");
+
+            entity.Property(e => e.IdUsuario).ValueGeneratedNever();
+            entity.Property(e => e.Cantidad1).HasColumnName("Cantidad");
+
+            entity.HasOne(d => d.IdUsuarioNavigation).WithOne(p => p.Cantidad)
+                .HasForeignKey<Cantidad>(d => d.IdUsuario)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Cantidad_Usuario");
         });
 
         modelBuilder.Entity<Ciudad>(entity =>
@@ -246,6 +263,10 @@ public partial class Context : DbContext
                 .HasForeignKey(d => d.DuenoId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Negocio_Persona");
+
+            entity.HasOne(d => d.Comuna).WithMany(p => p.Negocios)
+                .HasForeignKey(d => new { d.ComunaCodigo, d.PaisCodigo, d.RegionCodigo, d.CiudadCodigo })
+                .HasConstraintName("FK_Negocio_Comuna");
         });
 
         modelBuilder.Entity<Pago>(entity =>

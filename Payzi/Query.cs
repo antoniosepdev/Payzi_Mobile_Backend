@@ -21,6 +21,33 @@ namespace Payzi
 
         #endregion
 
+        #region Cantidad
+
+        public static IQueryable<Payzi.Model.Cantidad> GetCantidad(Payzi.Context.Context context)
+        {
+            return
+                from cantidad in context.Cantidads
+                select cantidad;
+        }
+
+        public static IQueryable<Payzi.Model.Cantidad> GetCantidad(Payzi.Context.Context context, Guid idUsuario)
+        {
+            return
+                from cantidad in context.Cantidads
+                where cantidad.IdUsuario == idUsuario
+                select cantidad;
+        }
+
+        public static IQueryable<Payzi.Model.Cantidad> GetCantidad(Payzi.Context.Context context, Usuario usuario)
+        {
+            return
+                from cantidad in context.Cantidads
+                where cantidad.IdUsuario == usuario.Id
+                select cantidad;
+        }
+
+        #endregion
+
         #region CustomField
 
         public static IQueryable<Payzi.Model.CustomField> GetCustomFields(Payzi.Context.Context context)
