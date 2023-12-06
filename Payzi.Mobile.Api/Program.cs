@@ -77,6 +77,8 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
     app.ConfigureSwagger();
 }
 
+app.UseWebSockets();
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
