@@ -10,7 +10,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Payzi.MySQL.Model.Business
+namespace Payzi.Business
 {
     public static class Account
     {

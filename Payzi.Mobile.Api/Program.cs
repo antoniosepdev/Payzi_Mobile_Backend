@@ -69,6 +69,17 @@ builder.Services.AddSwaggerGen(c =>
         );
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("corsLocalHost", //AllowSpecificOrigin
+        builder => builder.WithOrigins(
+            "http://localhost:7164",
+            "http://localhost:5011",
+            "http://localhost:3000",
+            "") // Reemplaza con la URL de tu aplicación Flutter
+                          .AllowAnyHeader()
+                          .AllowAnyMethod());
+});
 
 var app = builder.Build();
 
@@ -76,6 +87,8 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.ConfigureSwagger();
 }
+
+app.UseCors("AllowSpecificOrigin");
 
 app.UseWebSockets();
 

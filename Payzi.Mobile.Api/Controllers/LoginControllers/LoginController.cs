@@ -22,7 +22,7 @@ namespace Payzi.Mobile.Api.Controllers.LoginControllers
         {
             try
             {
-                Payzi.MySQL.Model.Business.Account.LoginParametros loginParametros = new Payzi.MySQL.Model.Business.Account.LoginParametros
+                Payzi.Business.Account.LoginParametros loginParametros = new Payzi.Business.Account.LoginParametros
                 {
                     Email = loginDTO.Email,
                     Password = loginDTO.Clave,
@@ -30,7 +30,7 @@ namespace Payzi.Mobile.Api.Controllers.LoginControllers
                     Context = this._context 
                 };
 
-                (Payzi.Enumerate.LoginStatus loginStatus, string token) = await Payzi.MySQL.Model.Business.Account.Logear(loginParametros);
+                (Payzi.Enumerate.LoginStatus loginStatus, string token) = await Payzi.Business.Account.Logear(loginParametros);
 
                 Payzi.Mobile.Api.Models.LoginModels.LoginModel login = new Payzi.Mobile.Api.Models.LoginModels.LoginModel();
 
