@@ -71,6 +71,7 @@ namespace Payzi.Mobile.Api.Controllers.LoginControllers
                     default:
                         {
                             login.Code = (int)StatusCodes.Status200OK;
+                            login.Message = "Se ha iniciado sesión: " + loginDTO.Email.ToString() + ".";
                             login.Status = "OK";
                             login.Token = token;
 

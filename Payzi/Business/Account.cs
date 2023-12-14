@@ -51,6 +51,9 @@ namespace Payzi.Business
 
                     string accessToken = Payzi.Business.AccessToken.GenerateAccessToken(usuario);
 
+                    var identity = AccessToken.GetClaimsIdentityFromToken(accessToken);
+                    identity.AddEmailClaim(loginParametros.Email);
+
                     return (LoginStatus.Success, accessToken);
                 }
                 catch

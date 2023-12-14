@@ -7,12 +7,12 @@ using Microsoft.AspNetCore.Authentication;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
+using Payzi.Mobile.Api.Controllers.Common;
 
 var builder = WebApplication.CreateBuilder(args);
 
 TypeAdapterConfig.GlobalSettings.Default.PreserveReference(true);
 
-// Add services to the container.
 string? connectionStrings = builder.Configuration.GetConnectionString("Payzi");
 
 string? secret = builder.Configuration.GetValue<string>("Secret");
@@ -58,7 +58,6 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 });
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -91,6 +90,8 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 app.UseCors("AllowSpecificOrigin");
 
 app.UseWebSockets();
+
+app.UseMiddleware<WebsocketController>();
 
 app.UseHttpsRedirection();
 
