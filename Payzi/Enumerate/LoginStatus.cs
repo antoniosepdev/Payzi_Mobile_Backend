@@ -9,7 +9,7 @@ namespace Payzi.Enumerate
     public enum LoginStatus
     {
         Success,
-        InvalidRunOrPassword,
+        InvalidEmailOrPassword,
         UserLocked,
         UserApprovedOut,
         NotAccessAllowed

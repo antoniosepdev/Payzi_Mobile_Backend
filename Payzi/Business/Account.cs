@@ -27,34 +27,42 @@ namespace Payzi.Business
 
         public static async Task<(LoginStatus loginStatus, string accessToken)> Logear(LoginParametros loginParametros)
         {
-            Payzi.Business.Usuario usuario = await Payzi.Business.Usuario.GetAsync(loginParametros.Context, loginParametros.Email);
-
-            string clave = Account.DecodePassword(usuario.Clave);
-
-            if (!Account.EncryptPassword(loginParametros.Password).Equals(usuario.Clave))
-            {
-                return (LoginStatus.InvalidRunOrPassword, string.Empty);
-            }
             try
             {
-                usuario.UltimoAcceso = DateTime.Now;
-                usuario.Bloqueado = false;
-                usuario.FechaIntentoFallido = null;
+                Payzi.Business.Usuario usuario = await Payzi.Business.Usuario.GetAsync(loginParametros.Context, loginParametros.Email);
 
-                await usuario.Save(loginParametros.Context);
+                string clave = Account.DecodePassword(usuario.Clave);
 
-                await loginParametros.Context.SaveChangesAsync();
+                if (!Account.EncryptPassword(loginParametros.Password).Equals(usuario.Clave))
+                {
+                    return (LoginStatus.InvalidEmailOrPassword, string.Empty);
+                }
+                try
+                {
+                    usuario.UltimoAcceso = DateTime.Now;
+                    usuario.Bloqueado = false;
+                    usuario.FechaIntentoFallido = null;
 
-                string? connectionString = loginParametros.Context.Database.GetConnectionString();
+                    await usuario.Save(loginParametros.Context);
 
-                string accessToken = Payzi.Business.AccessToken.GenerateAccessToken(usuario);
+                    await loginParametros.Context.SaveChangesAsync();
 
-                return (LoginStatus.Success, accessToken);
+                    string? connectionString = loginParametros.Context.Database.GetConnectionString();
+
+                    string accessToken = Payzi.Business.AccessToken.GenerateAccessToken(usuario);
+
+                    return (LoginStatus.Success, accessToken);
+                }
+                catch
+                {
+                    return (LoginStatus.InvalidEmailOrPassword, "0");
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return (LoginStatus.InvalidRunOrPassword, "0");
+                return (LoginStatus.InvalidEmailOrPassword, "0");
             }
+
 
         }
 

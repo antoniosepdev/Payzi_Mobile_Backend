@@ -73,9 +73,9 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("corsLocalHost", //AllowSpecificOrigin
         builder => builder.WithOrigins(
-            "http://localhost:7164",
-            "http://localhost:5011",
-            "http://localhost:3000",
+            "https://localhost:7164",
+            "https://localhost:5011",
+            "https://localhost:3000",
             "") // Reemplaza con la URL de tu aplicación Flutter
                           .AllowAnyHeader()
                           .AllowAnyMethod());

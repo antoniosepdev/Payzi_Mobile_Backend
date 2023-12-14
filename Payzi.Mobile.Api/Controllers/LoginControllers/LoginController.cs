@@ -36,7 +36,7 @@ namespace Payzi.Mobile.Api.Controllers.LoginControllers
 
                 switch (loginStatus)
                 {
-                    case Payzi.Enumerate.LoginStatus.InvalidRunOrPassword:
+                    case Payzi.Enumerate.LoginStatus.InvalidEmailOrPassword:
                         {
                             login.Code = (int)StatusCodes.Status400BadRequest;
                             login.Message = "R.U.N. o contraseña incorrectos. Verifique sus datos e inténte acceder nuevamente.";
