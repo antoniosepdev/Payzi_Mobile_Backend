@@ -29,6 +29,6 @@
 
         public string SourceVersion { get; set; } = string.Empty;
 
-        public object CustomFields { get; set; }
+        public object? CustomFields { get; set; }
     }
 }

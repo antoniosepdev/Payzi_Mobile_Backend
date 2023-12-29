@@ -1,4 +1,5 @@
-﻿using Payzi.Mobile.Api.Controllers.Common;
+﻿using Payzi.Business;
+using Payzi.Mobile.Api.Controllers.Common;
 using Payzi.Mobile.Api.DTO.UsuariosDTO;
 using Payzi.Mobile.Api.Models.UsuariosModels;
 using Payzi.Mobile.Api.Services.Usuarios;
@@ -18,11 +19,15 @@ namespace Payzi.Mobile.Api.Controllers.UsuariosControllers
 
         public async Task<IEnumerable<UsuarioController>> GetAllUsers()
         {
+            await Task.Delay(1000);
+
             throw new NotImplementedException();
         }
 
         public async Task<IResult> GetUser()
         {
+            await Task.Delay(1000);
+
             return Results.Ok();
         }
 
@@ -36,7 +41,7 @@ namespace Payzi.Mobile.Api.Controllers.UsuariosControllers
                 {
                     Id = Guid.NewGuid(),
                     Email = usuarioDTO.Email,
-                    Clave = Filters.Procesadores.Encriptar.EncryptPassword(usuarioDTO.Clave),
+                    Clave = Account.EncryptPassword(usuarioDTO.Clave),
                     Aprobado = true,
                     Bloqueado = false,
                     RolCodigo = usuarioDTO.RolCodigo,
@@ -68,11 +73,15 @@ namespace Payzi.Mobile.Api.Controllers.UsuariosControllers
 
         public async Task<IResult> UpdateUser()
         {
+            await Task.Delay(1000);
+
             return Results.Ok();
         }
 
         public async Task<IResult> DeleteUser()
         {
+            await Task.Delay(1000);
+
             return Results.Ok();
         }
 

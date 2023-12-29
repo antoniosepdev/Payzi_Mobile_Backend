@@ -43,7 +43,7 @@ namespace Payzi.Business
         }
 
 
-        public static string GenerateAccessTokenEnterpriseConnection(Usuario user, string connectionString = default(string), Guid enterpriseId = default(Guid))
+        public static string GenerateAccessTokenEnterpriseConnection(Usuario user, string connectionString, Guid enterpriseId = default(Guid))
         {
             List<Claim> listClaims = new List<Claim>();
 
@@ -81,7 +81,7 @@ namespace Payzi.Business
             return encryptedJWT;
         }
 
-        public static ClaimsIdentity GetClaimsIdentityFromToken(string token)
+        public static async Task<ClaimsIdentity> GetClaimsIdentityFromToken(string token)
         {
             var handler = new JwtSecurityTokenHandler();
             var jsonToken = handler.ReadToken(token) as JwtSecurityToken;
@@ -91,10 +91,12 @@ namespace Payzi.Business
 
             var identity = new ClaimsIdentity(jsonToken.Claims);
 
+            await Task.Delay(1000);
+
             return identity;
         }
 
-        public static string GetEmailFromToken(string token)
+        public static async Task<string> GetEmailFromToken(string token)
         {
             var handler = new JwtSecurityTokenHandler();
             var jsonToken = handler.ReadToken(token) as JwtSecurityToken;
@@ -102,17 +104,21 @@ namespace Payzi.Business
             if (jsonToken == null || jsonToken.Payload == null)
             {
                 // Token inválido
+                await Task.Delay(1000);
+
                 return string.Empty;
             }
 
             object emailClaimValue;
 
-            if (jsonToken.Payload.TryGetValue("Email", out emailClaimValue))
+            if (jsonToken.Payload.TryGetValue("Email", out emailClaimValue) && emailClaimValue != null)
             {
-                return emailClaimValue.ToString();
+                return emailClaimValue.ToString() ?? string.Empty;
             }
-
-            return string.Empty;
+            else
+            {
+                return string.Empty;
+            }
         }
     }
 }

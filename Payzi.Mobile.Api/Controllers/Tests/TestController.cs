@@ -18,10 +18,14 @@ namespace Payzi.Mobile.Api.Controllers.Tests
         {
             try
             {
+                await Task.Delay(1000);
+
                 return Results.Ok(testDTO);
             }
             catch
             {
+                await Task.Delay(1000);
+
                 return Results.BadRequest(testDTO);
             }
 

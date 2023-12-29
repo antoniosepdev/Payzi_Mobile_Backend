@@ -16,6 +16,8 @@ namespace Payzi.Mobile.Api.Controllers.PersonasControllers
 
         public async Task<IResult> GetPerson()
         {
+            await Task.Delay(1000);
+
             return Results.Ok();
         }
 
@@ -70,10 +72,14 @@ namespace Payzi.Mobile.Api.Controllers.PersonasControllers
 
         public async Task<IResult> UpdatePerson()
         {
+            await Task.Delay(1000);
+
             return Results.Ok();
         }
         public async Task<IResult> DeletePerson()
         {
+            await Task.Delay(1000);
+
             return Results.Ok();
         }
 

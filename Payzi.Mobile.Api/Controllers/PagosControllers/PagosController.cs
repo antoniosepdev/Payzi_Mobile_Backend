@@ -9,6 +9,7 @@ using Payzi.Mobile.Api.DTO.VoucherDTO;
 using Payzi.Mobile.Api.Models.CustomFieldsModels;
 using Payzi.Mobile.Api.Models.PagosModels;
 using Payzi.Mobile.Api.Services.PagosServices;
+using System.Net.NetworkInformation;
 
 namespace Payzi.Mobile.Api.Controllers.PagosControllers
 {
@@ -20,6 +21,36 @@ namespace Payzi.Mobile.Api.Controllers.PagosControllers
             : base(httpContext, context)
         {
             _context = context;
+        }
+
+        private async Task<bool> IsInternetConnected()
+        {
+            try
+            {
+                using (var ping = new Ping())
+                {
+                    var result = ping.Send("8.8.8.8"); // Utiliza la dirección IP de un servidor DNS de Google como ejemplo
+                    return result.Status == IPStatus.Success;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        private bool userCancelled = false;
+
+        // Método para verificar si la transacción fue cancelada por el usuario
+        private bool IsTransactionCancelled()
+        {
+            return userCancelled;
+        }
+
+        // Método para establecer la bandera de cancelación
+        public void CancelTransaction()
+        {
+            userCancelled = true;
         }
 
         public async Task<IResult> AddPagos(PagosDTO pagosDTO)
@@ -314,7 +345,16 @@ namespace Payzi.Mobile.Api.Controllers.PagosControllers
                 //Dentro del catch
 
                 //(10) En caso de que durante el proceso de la transacción esta haya sido cancelada por el usuario.
-                /*PENDIENTE*/
+                if (IsTransactionCancelled())
+                {
+                    // Código para manejar la cancelación de la transacción
+                    recepcionPagosModel.errorCode = "10";
+                    recepcionPagosModel.errorMessage = "La transacción fue cancelada.";
+                    recepcionPagosModel.errorCodeOnApp = StatusCodes.Status500InternalServerError;
+                    recepcionPagosModel.errorMessageOnApp = "Internal Server Error";
+
+                    return Results.BadRequest("La transacción fue cancelada por el usuario.");
+                }
 
                 //(11) El Terminal aun no ha sido correctamente configurado, esto puede deberse a que aún no ha sido agregado y activado en el espacio de trabajo del usuario,
                 //o que el dispositivo no haya sido aprobado desde Backoffice para su uso, o que el dispositivo haya sido previamente deshabilitado.
@@ -336,7 +376,15 @@ namespace Payzi.Mobile.Api.Controllers.PagosControllers
                 }
 
                 //(14) El Terminal actualmente no esta conectado a alguna red o la red a la cual esta conectado no presenta salida a internet, por lo tanto no es posible cargar las configuraciones.
-                /*PENDIENTE*/
+                if (!await IsInternetConnected())
+                {
+                    recepcionPagosModel.errorCode = "14";
+                    recepcionPagosModel.errorMessage = "El Terminal está conectado a internet, pero no se pudo establecer conexión con la cuenta de pago correctamente.";
+                    recepcionPagosModel.errorCodeOnApp = StatusCodes.Status500InternalServerError;
+                    recepcionPagosModel.errorMessageOnApp = "Internal Server Error";
+
+                    return Results.BadRequest(recepcionPagosModel);
+                }
 
                 //(15) El Terminal está conectado a internet, sin embargo no se pudo establecer conexión con la cuenta de pago correctamente.
                 /*PENDIENTE*/
@@ -461,7 +509,6 @@ namespace Payzi.Mobile.Api.Controllers.PagosControllers
 
                 return Results.BadRequest(recepcionPagosModel);
             }
-
         }
     }
 }

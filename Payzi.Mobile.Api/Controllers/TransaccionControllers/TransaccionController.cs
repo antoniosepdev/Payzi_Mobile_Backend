@@ -61,8 +61,8 @@ namespace Payzi.Mobile.Api.Controllers.TransaccionControllers
                     {
                         CustomFields2DTO customFields2DTO = new CustomFields2DTO
                         {
-                            Name = item.Name,
-                            Value = item.Value,
+                            Name = item.Name ?? "ItemName",
+                            Value = item.Value ?? "ItemValue",
                             Print = item.Print
                         };
                         customFieldsDTO2.Add(customFields2DTO);
@@ -73,11 +73,11 @@ namespace Payzi.Mobile.Api.Controllers.TransaccionControllers
                 {
                     if (item != null)
                     {
-                        extraDataDTO2.TaxIdnValidation = item.TaxIdnValidation;
+                        extraDataDTO2.TaxIdnValidation = item.TaxIdnValidation ?? "itemTaxIdnValidation";
                         extraDataDTO2.ExemptAmount = item.ExemptAmount;
                         extraDataDTO2.NetAmount = item.NetAmount;
-                        extraDataDTO2.SourceName = item.SourceName;
-                        extraDataDTO2.SourceVersion = item.SourceVersion;
+                        extraDataDTO2.SourceName = item.SourceName ?? "itemSourceName";
+                        extraDataDTO2.SourceVersion = item.SourceVersion ?? "itemSourceVersion";
                         extraDataDTO2.CustomFields = customFieldsDTO2;
                     }
                 }
@@ -146,8 +146,8 @@ namespace Payzi.Mobile.Api.Controllers.TransaccionControllers
                     {
                         CustomFields2DTO customFields2DTO = new CustomFields2DTO
                         {
-                            Name = item.Name,
-                            Value = item.Value,
+                            Name = item.Name ?? "itemName",
+                            Value = item.Value ?? "itemValue",
                             Print = item.Print
                         };
                         customFieldsDTO2.Add(customFields2DTO);
@@ -158,11 +158,11 @@ namespace Payzi.Mobile.Api.Controllers.TransaccionControllers
                 {
                     if (item != null)
                     {
-                        extraDataDTO2.TaxIdnValidation = item.TaxIdnValidation;
+                        extraDataDTO2.TaxIdnValidation = item.TaxIdnValidation ?? "itemTaxIdnValidation";
                         extraDataDTO2.ExemptAmount = item.ExemptAmount;
                         extraDataDTO2.NetAmount = item.NetAmount;
-                        extraDataDTO2.SourceName = item.SourceName;
-                        extraDataDTO2.SourceVersion = item.SourceVersion;
+                        extraDataDTO2.SourceName = item.SourceName ?? "itemSourceName";
+                        extraDataDTO2.SourceVersion = item.SourceVersion ?? "itemSourceVersion";
                         extraDataDTO2.CustomFields = customFieldsDTO2;
                     }
                 }
@@ -231,8 +231,8 @@ namespace Payzi.Mobile.Api.Controllers.TransaccionControllers
                     {
                         CustomFields2DTO customFields2DTO = new CustomFields2DTO
                         {
-                            Name = item.Name,
-                            Value = item.Value,
+                            Name = item.Name ?? "itemName",
+                            Value = item.Value ?? "itemValue",
                             Print = item.Print
                         };
                         customFieldsDTO2.Add(customFields2DTO);
@@ -243,11 +243,11 @@ namespace Payzi.Mobile.Api.Controllers.TransaccionControllers
                 {
                     if (item != null)
                     {
-                        extraDataDTO2.TaxIdnValidation = item.TaxIdnValidation;
+                        extraDataDTO2.TaxIdnValidation = item.TaxIdnValidation ?? "itemTaxIdnValidation";
                         extraDataDTO2.ExemptAmount = item.ExemptAmount;
                         extraDataDTO2.NetAmount = item.NetAmount;
-                        extraDataDTO2.SourceName = item.SourceName;
-                        extraDataDTO2.SourceVersion = item.SourceVersion;
+                        extraDataDTO2.SourceName = item.SourceName ?? "itemName";
+                        extraDataDTO2.SourceVersion = item.SourceVersion ?? "itemSourceVersion";
                         extraDataDTO2.CustomFields = customFieldsDTO2;
                     }
                 }

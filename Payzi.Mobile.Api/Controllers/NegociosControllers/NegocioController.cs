@@ -17,6 +17,8 @@ namespace Payzi.Mobile.Api.Controllers.NegociosControllers
 
         public async Task<IResult> GetNegocio()
         {
+            await Task.Delay(1000);
+
             return Results.Ok();
         }
 
@@ -63,10 +65,14 @@ namespace Payzi.Mobile.Api.Controllers.NegociosControllers
 
         public async Task<IResult> UpdateNegocio()
         {
+            await Task.Delay(1000);
+
             return Results.Ok();
         }
         public async Task<IResult> DeleteNegocio()
         {
+            await Task.Delay(1000);
+
             return Results.Ok();
         }
     }

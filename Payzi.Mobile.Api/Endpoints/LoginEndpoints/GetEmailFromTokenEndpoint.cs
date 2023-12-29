@@ -17,7 +17,7 @@ namespace Payzi.Mobile.Api.Endpoints.LoginEndpoints
                         return Results.Problem("Token error: Token no ingresado o vacio.");
                     }
 
-                    var email = AccessToken.GetEmailFromToken(token);
+                    var email = await AccessToken.GetEmailFromToken(token);
 
                     if (string.IsNullOrEmpty(email))
                     {

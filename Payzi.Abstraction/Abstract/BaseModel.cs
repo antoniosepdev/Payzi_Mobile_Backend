@@ -10,68 +10,31 @@ namespace Payzi.Abstraction.Abstract
     public abstract class BaseModel
     {
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public bool Success
-        {
-            get;
-            set;
-        }
+        public bool Success { get; set; }
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public string Status
-        {
-            get;
-            set;
-        } = string.Empty;
+        public string? Status { get; set; } = string.Empty;
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public int? Code
-        {
-            get;
-            set;
-        }
+        public int? Code { get; set; }
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public string Message
-        {
-            get;
-            set;
-        } = string.Empty;
+        public string? Message { get; set; } = string.Empty;
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public string Token
-        {
-            get;
-            set;
-        } = string.Empty;
+        public string? Token { get; set; } = string.Empty;
 
         //Manejo de errores.
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public string errorCode
-        {
-            get;
-            set;
-        } = string.Empty;
+        public string? errorCode { get; set; } = string.Empty;
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public string errorMessage
-        {
-            get;
-            set;
-        } = string.Empty;
+        public string? errorMessage { get; set; } = string.Empty;
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public int errorCodeOnApp
-        {
-            get;
-            set;
-        }
+        public int errorCodeOnApp { get; set; }
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public string errorMessageOnApp
-        {
-            get;
-            set;
-        } = string.Empty;
-
+        public string? errorMessageOnApp { get; set; } = string.Empty;
     }
 }
