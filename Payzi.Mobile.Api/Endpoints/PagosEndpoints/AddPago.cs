@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Payzi.Mobile.Api.Controllers.Common;
 using Payzi.Mobile.Api.Controllers.PagosControllers;
 using Payzi.Mobile.Api.DTO.CustomFieldsDTO;
 using Payzi.Mobile.Api.DTO.PagosDTO;

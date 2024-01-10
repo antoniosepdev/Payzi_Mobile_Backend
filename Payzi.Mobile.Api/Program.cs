@@ -8,6 +8,8 @@ using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 using Payzi.Mobile.Api.Controllers.Common;
+using Microsoft.AspNetCore.WebSockets;
+using Payzi.Mobile.Api.Controllers.TransaccionControllers;
 
 var builder = WebApplication.CreateBuilder(args);
 

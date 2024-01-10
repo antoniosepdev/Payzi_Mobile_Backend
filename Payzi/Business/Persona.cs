@@ -19,6 +19,15 @@ namespace Payzi.Business
             return persona;
         }
 
+        public static async Task<Persona> GetAsync(Payzi.Context.Context context, string rut)
+        {
+            Payzi.Model.Persona query = await Query.GetPersonas(context).Include("Comuna").SingleOrDefaultAsync<Payzi.Model.Persona>(x => x.Rut == rut);
+
+            Persona persona = query.SingleOrDefault<Persona>();
+
+            return persona;
+        }
+
         public static async Task<Persona> GetAsync(Payzi.Context.Context context, int rutCuerpo, string rutDigito)
         {
             Payzi.Model.Persona? query = await Query.GetPersonas(context).SingleOrDefaultAsync<Payzi.Model.Persona>(x => x.RutCuerpo == rutCuerpo && x.RutDigito.ToLower() == rutDigito.ToLower());

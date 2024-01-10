@@ -5,6 +5,7 @@ using Payzi.Mobile.Api.Controllers.TransaccionControllers;
 using Payzi.Mobile.Api.DTO.PagosDTO;
 using Payzi.Mobile.Api.DTO.TransaccionDTO;
 using Payzi.Mobile.Api.Models.TransaccionModels;
+using System.Net.WebSockets;
 
 namespace Payzi.Mobile.Api.Endpoints.TransferenciaEndpoints
 {

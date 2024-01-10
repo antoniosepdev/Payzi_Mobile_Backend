@@ -10,6 +10,7 @@ using Payzi.Mobile.Api.Models.CustomFieldsModels;
 using Payzi.Mobile.Api.Models.PagosModels;
 using Payzi.Mobile.Api.Services.PagosServices;
 using System.Net.NetworkInformation;
+using System.Net.WebSockets;
 
 namespace Payzi.Mobile.Api.Controllers.PagosControllers
 {
@@ -17,11 +18,29 @@ namespace Payzi.Mobile.Api.Controllers.PagosControllers
     {
         private Payzi.Context.Context _context;
 
+        //private readonly WebSocketController _webSocketController;
+
         public PagosController(HttpContext httpContext, Payzi.Context.Context context)
             : base(httpContext, context)
         {
             _context = context;
         }
+
+        //Websocket
+        private static List<WebSocket> _webSockets = new List<WebSocket>();
+
+        // ...
+
+        public static void AddWebSocket(WebSocket webSocket)
+        {
+            _webSockets.Add(webSocket);
+        }
+
+        public static void RemoveWebSocket(WebSocket webSocket)
+        {
+            _webSockets.Remove(webSocket);
+        }
+
 
         private async Task<bool> IsInternetConnected()
         {
@@ -69,6 +88,8 @@ namespace Payzi.Mobile.Api.Controllers.PagosControllers
                 await pago.Save(this._context);
                 await _context.SaveChangesAsync();
 
+                //await this._webSocketController.NotifyClients("Payment added");
+
                 addPagosModel.Success = true;
                 addPagosModel.Code = StatusCodes.Status200OK;
                 addPagosModel.Data = true;
@@ -86,7 +107,6 @@ namespace Payzi.Mobile.Api.Controllers.PagosControllers
         }
 
         //Recibir pagos: La SuperAPI que realiza recepción de un pago, agregando transaccion, extradata, customId y su salida.
-        //PD: Debe de traer la data del front desde el DTO.
         public async Task<IResult> RecepcionPago(RecepcionPagosDTO recepcionPagosDTO)
         {
             RecepcionPagosModel recepcionPagosModel = new RecepcionPagosModel();
@@ -486,6 +506,8 @@ namespace Payzi.Mobile.Api.Controllers.PagosControllers
                 await pago.Save(this._context);
 
                 await _context.SaveChangesAsync();
+
+                //await this._webSocketController.NotifyClients("Payment added");
 
                 #endregion
 

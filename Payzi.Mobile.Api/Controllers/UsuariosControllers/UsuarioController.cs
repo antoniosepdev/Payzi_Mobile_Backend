@@ -33,7 +33,7 @@ namespace Payzi.Mobile.Api.Controllers.UsuariosControllers
 
         public async Task<IResult> AddUser(UsuarioDTO usuarioDTO)
         {
-            AddUsuarioModel addUsuarioModel = new AddUsuarioModel();
+            AddUsuarioModel model = new AddUsuarioModel();
 
             try
             {
@@ -55,19 +55,19 @@ namespace Payzi.Mobile.Api.Controllers.UsuariosControllers
                 await usuario.Save(this._context);
                 await _context.SaveChangesAsync();
 
-                addUsuarioModel.Success = true;
-                addUsuarioModel.Code = StatusCodes.Status200OK;
-                addUsuarioModel.Data = true;
+                model.Success = true;
+                model.Code = StatusCodes.Status200OK;
+                model.Data = true;
 
-                return Results.Ok(addUsuarioModel);
+                return Results.Ok(model);
             }
             catch
             {
-                addUsuarioModel.Success = false;
-                addUsuarioModel.Code = StatusCodes.Status400BadRequest;
-                addUsuarioModel.Data = false;
+                model.Success = false;
+                model.Code = StatusCodes.Status400BadRequest;
+                model.Data = false;
 
-                return Results.BadRequest(addUsuarioModel);
+                return Results.BadRequest(model);
             }
         }
 

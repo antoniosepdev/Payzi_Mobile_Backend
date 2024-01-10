@@ -29,5 +29,7 @@ namespace Payzi.Mobile.Api.Endpoints.PersonasEndpoints
             throw new NotImplementedException();
         }
 
+
+
     }
 }
